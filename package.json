@@ -1,0 +1,19 @@
+{
+  "name": "preentrega1_martinezalfredo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlfredoMc95/PreEntrega1_MartinezAlfredo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlfredoMc95/PreEntrega1_MartinezAlfredo/issues"
+  },
+  "homepage": "https://github.com/AlfredoMc95/PreEntrega1_MartinezAlfredo#readme"
+}

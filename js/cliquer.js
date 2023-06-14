@@ -2,7 +2,7 @@ let gold = 0;
 let pickaxeUpdateCost = 10;
 let piackaceLvl = 1;
 let piackacePower = 1;
-let digFiboCost = 10;
+let digFibocost = 10;
 let digFibolvl = 0;
 let digFiboPower = 0;
 
@@ -25,7 +25,7 @@ const displayMenu = () => {
   console.log(`1: Escabar`);
   console.log(`2: Mejorar pico lvl:${piackaceLvl}, ${pickaxeUpdateCost}$`);
   console.log(
-    `3: Mina fibonacci lvl:${digFibolvl}, ${digFiboCost}$, poder: ${digFiboPower}`
+    `3: Mina fibonacci lvl:${digFibolvl}, ${digFibocost}$, poder: ${digFiboPower}`
   );
   console.log(`4: Salir`);
   console.log("------------------------------");
@@ -46,20 +46,23 @@ const pickaxeUpgrade = () => {
 };
 
 const fibonacci = (num) => {
-  if (gold >= digFiboCost) {
+  if (gold >= digFibocost) {
     let val1 = 0;
     let val2 = 1;
     let digFiboVal = 0;
     for (let index = 0; index <= num; index++) {
+      if (num <= 1) {
+        digFiboVal++;
+      }
       digFiboVal = val1 + val2;
       val1 = val2;
       val2 = digFiboVal;
     }
-    gold -= digFiboCost;
+    gold -= digFibocost;
     gold += digFiboVal;
     digFiboPower = digFiboVal;
     digFibolvl++;
-    digFiboCost *= 5;
+    digFibocost *= 2;
     displayMenu();
   } else {
     console.log("Oro insuficiente");

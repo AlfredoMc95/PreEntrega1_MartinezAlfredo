@@ -16,7 +16,11 @@ const iniciar = () => {
     iniciar();
   }
 };
-
+const dig = () => {
+  let totalPower = digFiboPower + piackacePower;
+  gold += totalPower;
+  displayMenu();
+};
 const displayMenu = () => {
   console.log("------------------------------");
   console.log(`Oro: ${gold}`);
@@ -59,7 +63,6 @@ const fibonacci = (num) => {
       val2 = digFiboVal;
     }
     gold -= digFibocost;
-    gold += digFiboVal;
     digFiboPower = digFiboVal;
     digFibolvl++;
     digFibocost *= 2;
@@ -74,8 +77,7 @@ const selectMenu = () => {
   let comand = prompt("Opciones");
   switch (comand) {
     case "1":
-      gold += piackacePower;
-      displayMenu();
+      dig();
       break;
     case "2":
       pickaxeUpgrade();

@@ -6,32 +6,59 @@ let digFibocost = 10;
 let digFibolvl = 0;
 let digFiboPower = 0;
 
-const iniciar = () => {
+class diggers {
+  constructor(updateCost, lvl, power) {
+    this.updateCost = updateCost;
+    this.lvl = lvl;
+    this.power = power;
+  }
+  buyUpgrade() {
+    if (gold >= this.updateCost) {
+      gold -= this.updateCost;
+      this.lvl++;
+      this.power += this.updateCost / 2;
+      this.updateCost = this.lvl * this.power * 4;
+      displayMenu();
+    } else {
+      console.log("Oro insuficiente");
+      displayMenu();
+    }
+  }
+}
+
+const display = () => {
   let comand = prompt("desea jugar Y/N");
   if (comand === "y" || comand === "Y") {
-    console.log("iniciar juego");
+    console.log("display juego");
     displayMenu();
   } else {
     exitGame();
-    iniciar();
+    display();
   }
 };
+
 const dig = () => {
-  let totalPower = digFiboPower + piackacePower;
+  let totalPower = digFiboPower + piackacePower + groundDig.power;
   gold += totalPower;
   displayMenu();
 };
+
 const displayMenu = () => {
   console.log("------------------------------");
   console.log(`Oro: ${gold}`);
   console.log("------------------------------");
   console.log(`Opciones`);
   console.log(`1: Escabar`);
-  console.log(`2: Mejorar pico lvl:${piackaceLvl}, ${pickaxeUpdateCost}$`);
+  console.log(
+    `2: Mejorar pico lvl:${piackaceLvl}, ${pickaxeUpdateCost}$ poder: ${piackacePower}`
+  );
   console.log(
     `3: Mina fibonacci lvl:${digFibolvl}, ${digFibocost}$, poder: ${digFiboPower}`
   );
-  console.log(`4: Salir`);
+  console.log(
+    `4: Mejorar mina lvl:${groundDig.lvl}, ${groundDig.updateCost}$, poder: ${groundDig.power}`
+  );
+  console.log(`5: Salir`);
   console.log("------------------------------");
   selectMenu();
 };
@@ -86,6 +113,9 @@ const selectMenu = () => {
       fibonacci(digFibolvl);
       break;
     case "4":
+      groundDig.buyUpgrade();
+      break;
+    case "5":
       endGame();
       break;
     default:
@@ -100,4 +130,6 @@ const selectMenu = () => {
 const endGame = () => console.log("Chao todo el oro se perdio :(");
 const exitGame = () => console.log("Chao");
 
-iniciar();
+const groundDig = new diggers(100, 0, 0);
+
+display();

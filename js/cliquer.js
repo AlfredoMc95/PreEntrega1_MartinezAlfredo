@@ -1,4 +1,4 @@
-let gold = 10000;
+let gold = 0;
 let pickaxeUpdateCost = 10;
 let piackaceLvl = 1;
 let piackacePower = 1;

@@ -2,29 +2,48 @@ let gold = 0;
 let pickaxeUpdateCost = 10;
 let piackaceLvl = 1;
 let piackacePower = 1;
-let digFibocost = 10;
-let digFibolvl = 0;
-let digFiboPower = 0;
+let allPower = [piackacePower];
 
-class diggers {
-  constructor(updateCost, lvl, power) {
+class Diggers {
+  constructor(updateCost, lvl, power, buy, id) {
     this.updateCost = updateCost;
     this.lvl = lvl;
     this.power = power;
+    this.buy = buy;
+    this.id = id;
   }
-  buyUpgrade() {
+  checkGold() {
     if (gold >= this.updateCost) {
-      gold -= this.updateCost;
-      this.lvl++;
-      this.power += this.updateCost / 2;
-      this.updateCost = this.lvl * this.power * 4;
-      displayMenu();
+      this.firstBuy();
     } else {
       console.log("Oro insuficiente");
       displayMenu();
     }
   }
+  firstBuy() {
+    if (this.buy) {
+      console.log("ya lo tenia");
+      this.buyUpgrade();
+    } else {
+      console.log("lo compro");
+      allPower.push(this.power);
+      this.buy = true;
+      this.buyUpgrade();
+    }
+  }
+  buyUpgrade() {
+    gold -= this.updateCost;
+    this.lvl++;
+    this.power += this.updateCost / 2;
+    allPower[this.id] = this.power;
+    console.log(this.id);
+    this.updateCost = this.lvl * this.power * 4;
+    console.log(allPower);
+    displayMenu();
+  }
 }
+
+const groundDig = new Diggers(100, 0, 0, false, 1);
 
 const display = () => {
   let comand = prompt("desea jugar Y/N");
@@ -38,7 +57,10 @@ const display = () => {
 };
 
 const dig = () => {
-  let totalPower = digFiboPower + piackacePower + groundDig.power;
+  let totalPower = 0;
+  for (let index = 0; index <= allPower.length - 1; index++) {
+    totalPower += allPower[index];
+  }
   gold += totalPower;
   displayMenu();
 };
@@ -53,12 +75,9 @@ const displayMenu = () => {
     `2: Mejorar pico lvl:${piackaceLvl}, ${pickaxeUpdateCost}$ poder: ${piackacePower}`
   );
   console.log(
-    `3: Mina fibonacci lvl:${digFibolvl}, ${digFibocost}$, poder: ${digFiboPower}`
+    `3: Mejorar mina lvl:${groundDig.lvl}, ${groundDig.updateCost}$, poder: ${groundDig.power}`
   );
-  console.log(
-    `4: Mejorar mina lvl:${groundDig.lvl}, ${groundDig.updateCost}$, poder: ${groundDig.power}`
-  );
-  console.log(`5: Salir`);
+  console.log(`4: Salir`);
   console.log("------------------------------");
   selectMenu();
 };
@@ -68,31 +87,8 @@ const pickaxeUpgrade = () => {
     gold -= pickaxeUpdateCost;
     piackaceLvl++;
     piackacePower += 5;
+    allPower[0] = piackacePower;
     pickaxeUpdateCost = piackaceLvl * piackacePower;
-    displayMenu();
-  } else {
-    console.log("Oro insuficiente");
-    displayMenu();
-  }
-};
-
-const fibonacci = (num) => {
-  if (gold >= digFibocost) {
-    let val1 = 0;
-    let val2 = 1;
-    let digFiboVal = 0;
-    for (let index = 0; index <= num; index++) {
-      if (num <= 1) {
-        digFiboVal++;
-      }
-      digFiboVal = val1 + val2;
-      val1 = val2;
-      val2 = digFiboVal;
-    }
-    gold -= digFibocost;
-    digFiboPower = digFiboVal;
-    digFibolvl++;
-    digFibocost *= 2;
     displayMenu();
   } else {
     console.log("Oro insuficiente");
@@ -110,12 +106,9 @@ const selectMenu = () => {
       pickaxeUpgrade();
       break;
     case "3":
-      fibonacci(digFibolvl);
+      groundDig.checkGold();
       break;
     case "4":
-      groundDig.buyUpgrade();
-      break;
-    case "5":
       endGame();
       break;
     default:
@@ -129,7 +122,5 @@ const selectMenu = () => {
 
 const endGame = () => console.log("Chao todo el oro se perdio :(");
 const exitGame = () => console.log("Chao");
-
-const groundDig = new diggers(100, 0, 0);
 
 display();

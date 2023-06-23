@@ -22,10 +22,8 @@ class Diggers {
   }
   firstBuy() {
     if (this.buy) {
-      console.log("ya lo tenia");
       this.buyUpgrade();
     } else {
-      console.log("lo compro");
       allPower.push(this.power);
       this.buy = true;
       this.buyUpgrade();
@@ -36,9 +34,7 @@ class Diggers {
     this.lvl++;
     this.power += this.updateCost / 2;
     allPower[this.id] = this.power;
-    console.log(this.id);
     this.updateCost = this.lvl * this.power * 4;
-    console.log(allPower);
     displayMenu();
   }
 }

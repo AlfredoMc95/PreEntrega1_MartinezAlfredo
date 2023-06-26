@@ -1,8 +1,4 @@
 let gold = 0;
-let pickaxeUpdateCost = 10;
-let piackaceLvl = 1;
-let piackacePower = 1;
-let allPower = [piackacePower];
 
 class Diggers {
   constructor(updateCost, lvl, power, buy, id) {
@@ -39,7 +35,10 @@ class Diggers {
   }
 }
 
+const pickaxeDig = new Diggers(10, 1, 1, true, 0);
 const groundDig = new Diggers(100, 0, 0, false, 1);
+
+const allPower = [pickaxeDig.power];
 
 const display = () => {
   let comand = prompt("desea jugar Y/N");
@@ -68,7 +67,7 @@ const displayMenu = () => {
   console.log(`Opciones`);
   console.log(`1: Escabar`);
   console.log(
-    `2: Mejorar pico lvl:${piackaceLvl}, ${pickaxeUpdateCost}$ poder: ${piackacePower}`
+    `2: Mejorar pico lvl:${pickaxeDig.lvl}, ${pickaxeDig.updateCost}$ poder: ${pickaxeDig.power}`
   );
   console.log(
     `3: Mejorar mina lvl:${groundDig.lvl}, ${groundDig.updateCost}$, poder: ${groundDig.power}`
@@ -78,20 +77,6 @@ const displayMenu = () => {
   selectMenu();
 };
 
-const pickaxeUpgrade = () => {
-  if (gold >= pickaxeUpdateCost) {
-    gold -= pickaxeUpdateCost;
-    piackaceLvl++;
-    piackacePower += 5;
-    allPower[0] = piackacePower;
-    pickaxeUpdateCost = piackaceLvl * piackacePower;
-    displayMenu();
-  } else {
-    console.log("Oro insuficiente");
-    displayMenu();
-  }
-};
-
 const selectMenu = () => {
   let comand = prompt("Opciones");
   switch (comand) {
@@ -99,7 +84,7 @@ const selectMenu = () => {
       dig();
       break;
     case "2":
-      pickaxeUpgrade();
+      pickaxeDig.checkGold();
       break;
     case "3":
       groundDig.checkGold();

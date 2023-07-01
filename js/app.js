@@ -29,7 +29,6 @@ const buyUpgrade = (digger) => {
 const display = () => {
   let comand = prompt("desea jugar Y/N");
   if (comand === "y" || comand === "Y") {
-    console.log("display juego");
     displayMenu();
   } else {
     exitGame();
@@ -59,7 +58,7 @@ const displayMenu = () => {
       `${digger.console}: Mejorar ${digger.name} lvl: ${digger.lvl}, ${digger.cost}$, poder: ${digger.power}.`
     );
   });
-  console.log(`4: Salir`);
+  console.log(`5: Salir`);
   console.log("------------------------------");
   selectMenu();
 };
@@ -78,6 +77,9 @@ const selectMenu = () => {
       checkGold(Digger[1]);
       break;
     case "4":
+      checkGold(Digger[2]);
+      break;
+    case "5":
       endGame();
       break;
     default:

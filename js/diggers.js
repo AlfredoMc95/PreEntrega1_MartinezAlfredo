@@ -17,4 +17,13 @@ const Digger = [
     id: 1,
     console: 3,
   },
+  {
+    name: "Mina de piedra",
+    cost: 1000,
+    power: 0,
+    lvl: 0,
+    buyed: false,
+    id: 2,
+    console: 4,
+  },
 ];

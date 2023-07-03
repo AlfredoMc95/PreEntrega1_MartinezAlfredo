@@ -80,6 +80,9 @@ const selectMenu = () => {
       checkGold(Digger[2]);
       break;
     case "5":
+      checkGold(Digger[3]);
+      break;
+    case "6":
       endGame();
       break;
     default:

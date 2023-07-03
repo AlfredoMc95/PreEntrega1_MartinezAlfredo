@@ -26,4 +26,13 @@ const Digger = [
     id: 2,
     console: 4,
   },
+  {
+    name: "Mina de cobre",
+    cost: 10000,
+    power: 0,
+    lvl: 0,
+    buyed: false,
+    id: 3,
+    console: 5,
+  },
 ];

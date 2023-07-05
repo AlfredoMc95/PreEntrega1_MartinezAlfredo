@@ -73,8 +73,7 @@ const displayMenu = () => {
       `${digger.console}: Mejorar ${digger.name} lvl: ${digger.lvl}, ${digger.cost}$, poder: ${digger.power}.`
     );
   });
-  console.log(`5: Salir`);
-  console.log(allPower);
+  console.log(`6: Salir`);
   console.log("------------------------------");
   selectMenu();
 };

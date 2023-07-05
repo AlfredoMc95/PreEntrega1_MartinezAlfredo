@@ -1,30 +1,45 @@
 let gold = 0;
+let allPower = [];
 
-const checkGold = (digger) => {
-  if (gold >= digger.cost) {
-    firstBuy(digger);
-  } else {
-    console.log("Oro insuficiente");
+class Digger {
+  constructor(name, cost, power, lvl, buyed, console) {
+    this.name = name;
+    this.cost = cost;
+    this.power = power;
+    this.lvl = lvl;
+    this.buyed = buyed;
+    this.console = console;
+    allPower.push(this);
+  }
+  checkGold(digger) {
+    if (gold >= digger.cost) {
+      this.firstBuy(digger);
+    } else {
+      console.log("Oro insuficiente");
+      displayMenu();
+    }
+  }
+  firstBuy(digger) {
+    if (digger.buyed) {
+      this.buyUpgrade(digger);
+    } else {
+      digger.buyed = true;
+      this.buyUpgrade(digger);
+    }
+  }
+  buyUpgrade(digger) {
+    gold -= digger.cost;
+    digger.lvl++;
+    digger.power += digger.cost / 2;
+    digger.cost = digger.lvl * digger.power * 4;
     displayMenu();
   }
-};
+}
 
-const firstBuy = (digger) => {
-  if (digger.firstBuy) {
-    buyUpgrade(digger);
-  } else {
-    digger.buyed = true;
-    buyUpgrade(digger);
-  }
-};
-
-const buyUpgrade = (digger) => {
-  gold -= digger.cost;
-  digger.lvl++;
-  digger.power += digger.cost / 2;
-  digger.cost = digger.lvl * digger.power * 4;
-  displayMenu();
-};
+const pickaxe = new Digger("Pico", 10, 1, 1, true, 2);
+const groundDig = new Digger("Mina de tierra", 100, 0, 0, false, 3);
+const stoneDig = new Digger("Mina de piedra", 1000, 0, 0, false, 4);
+const copperDig = new Digger("Mina de cobre", 10000, 0, 0, false, 5);
 
 const display = () => {
   let comand = prompt("desea jugar Y/N");
@@ -38,7 +53,7 @@ const display = () => {
 
 const dig = () => {
   let totalPower = 0;
-  Digger.forEach((dig) => {
+  allPower.forEach((dig) => {
     if (dig.buyed) {
       totalPower += dig.power;
     }
@@ -53,17 +68,17 @@ const displayMenu = () => {
   console.log("------------------------------");
   console.log(`Opciones`);
   console.log(`1: Escabar`);
-  Digger.forEach((digger) => {
+  allPower.forEach((digger) => {
     console.log(
       `${digger.console}: Mejorar ${digger.name} lvl: ${digger.lvl}, ${digger.cost}$, poder: ${digger.power}.`
     );
   });
   console.log(`5: Salir`);
+  console.log(allPower);
   console.log("------------------------------");
   selectMenu();
 };
 
-// revisar
 const selectMenu = () => {
   let comand = prompt("Opciones");
   switch (comand) {
@@ -71,16 +86,16 @@ const selectMenu = () => {
       dig();
       break;
     case "2":
-      checkGold(Digger[0]);
+      allPower[0].checkGold(allPower[0]);
       break;
     case "3":
-      checkGold(Digger[1]);
+      allPower[1].checkGold(allPower[1]);
       break;
     case "4":
-      checkGold(Digger[2]);
+      allPower[2].checkGold(allPower[2]);
       break;
     case "5":
-      checkGold(Digger[3]);
+      allPower[3].checkGold(allPower[3]);
       break;
     case "6":
       endGame();

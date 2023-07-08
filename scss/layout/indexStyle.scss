@@ -2,6 +2,7 @@ body{
     padding: 40px;
     .title{
         @include d-flex(row, center, center,none,none);
+        margin-bottom: 40px;
         h1{
             span{
                 text-transform: uppercase;
@@ -10,14 +11,34 @@ body{
         }
     }
     .container{
+        @include d-flex(row, center, center,none,20px);
         &__text{
             @include d-flex(column, center, center,none,20px);
             text-align: center;
             font-size: 20px;
             margin: 40px;
+            width: 75%;
             span{
                 text-transform: uppercase;
                 color: $color-text-complement;
+            }
+        }
+        &__carrucel{
+            width: 20%;
+            height: 800px;
+            background-color: rgb(46, 46, 112);
+            overflow: scroll;
+            overflow-x: hidden;
+            .card{
+                @include d-flex(column, center, center, wrap,20px);
+                padding: 20px;
+                background-color: rgb(90, 39, 39);
+                width: 100%;
+                min-height: 200px;
+                margin: 20px 10px;
+                cursor: pointer;
+                font-weight: bold;
+                font-size: 20px;
             }
         }
     }

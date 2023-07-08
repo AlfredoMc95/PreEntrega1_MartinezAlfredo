@@ -24,6 +24,11 @@ body {
   background-color: #212f3d;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+}
+
 body {
   padding: 40px;
 }
@@ -34,10 +39,19 @@ body .title {
   align-items: center;
   flex-wrap: none;
   gap: none;
+  margin-bottom: 40px;
 }
 body .title h1 span {
   text-transform: uppercase;
   color: #b900b9;
+}
+body .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: none;
+  gap: 20px;
 }
 body .container__text {
   display: flex;
@@ -49,10 +63,34 @@ body .container__text {
   text-align: center;
   font-size: 20px;
   margin: 40px;
+  width: 75%;
 }
 body .container__text span {
   text-transform: uppercase;
   color: #b900b9;
+}
+body .container__carrucel {
+  width: 20%;
+  height: 800px;
+  background-color: rgb(46, 46, 112);
+  overflow: scroll;
+  overflow-x: hidden;
+}
+body .container__carrucel .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  background-color: rgb(90, 39, 39);
+  width: 100%;
+  min-height: 200px;
+  margin: 20px 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

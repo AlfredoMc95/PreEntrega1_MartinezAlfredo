@@ -1,5 +1,8 @@
-let gold = 0;
+let gold = 100000000000000000000;
 let allPower = [];
+const carrucel = document.querySelector(".container__carrucel__card");
+
+//document.addEventListener("DOMContentLoaded", () => {});
 
 class Digger {
   constructor(name, cost, power, lvl, buyed, console) {
@@ -10,28 +13,35 @@ class Digger {
     this.buyed = buyed;
     this.console = console;
     allPower.push(this);
+    carrucel.innerHTML += `<button class="card" id="button${this.console}">
+      <span class="card__name">${this.name}</span>
+      <span class="card__lvl">Lvl: ${this.lvl}</span>
+      <span class="card__cost">Precio Mejora: ${this.cost}$</span>
+      <span class="card__power">Poder: ${this.power}</span>
+      <span class="card__image"><img src="" alt=""></span>
+      </button>`;
   }
-  checkGold(digger) {
-    if (gold >= digger.cost) {
-      this.firstBuy(digger);
+  checkGold() {
+    if (gold >= this.cost) {
+      this.firstBuy();
     } else {
       console.log("Oro insuficiente");
       displayMenu();
     }
   }
-  firstBuy(digger) {
-    if (digger.buyed) {
-      this.buyUpgrade(digger);
+  firstBuy() {
+    if (this.buyed) {
+      this.buyUpgrade();
     } else {
-      digger.buyed = true;
-      this.buyUpgrade(digger);
+      this.buyed = true;
+      this.buyUpgrade();
     }
   }
-  buyUpgrade(digger) {
-    gold -= digger.cost;
-    digger.lvl++;
-    digger.power += digger.cost / 2;
-    digger.cost = digger.lvl * digger.power * 4;
+  buyUpgrade() {
+    gold -= this.cost;
+    this.lvl++;
+    this.power += this.cost / 2;
+    this.cost = this.lvl * this.power * 4;
     displayMenu();
   }
 }
@@ -41,6 +51,30 @@ const groundDig = new Digger("Mina de tierra", 100, 0, 0, false, 3);
 const stoneDig = new Digger("Mina de piedra", 1000, 0, 0, false, 4);
 const copperDig = new Digger("Mina de cobre", 10000, 0, 0, false, 5);
 
+const buyPickaxeBtn = document.querySelector("#button2");
+const buygroundDigBtn = document.querySelector("#button3");
+const buystoneDigBtn = document.querySelector("#button4");
+const buycopperDigBtn = document.querySelector("#button5");
+
+const buyPickaxe = () => {
+  return pickaxe.checkGold();
+};
+const buygroundDig = () => {
+  return groundDig.checkGold();
+};
+const buystoneDig = () => {
+  return stoneDig.checkGold();
+};
+const buycopperDig = () => {
+  return copperDig.checkGold();
+};
+
+buyPickaxeBtn.addEventListener("click", buyPickaxe);
+buygroundDigBtn.addEventListener("click", buygroundDig);
+buystoneDigBtn.addEventListener("click", buystoneDig);
+buycopperDigBtn.addEventListener("click", buycopperDig);
+
+//cambiar
 const display = () => {
   let comand = prompt("desea jugar Y/N");
   if (comand === "y" || comand === "Y") {
@@ -51,6 +85,7 @@ const display = () => {
   }
 };
 
+//añadir btn
 const dig = () => {
   let totalPower = 0;
   allPower.forEach((dig) => {
@@ -62,6 +97,7 @@ const dig = () => {
   displayMenu();
 };
 
+//añadir a la pg
 const displayMenu = () => {
   console.log("------------------------------");
   console.log(`Oro: ${gold}`);
@@ -75,9 +111,10 @@ const displayMenu = () => {
   });
   console.log(`6: Salir`);
   console.log("------------------------------");
-  selectMenu();
+  //selectMenu();
 };
 
+//añadir a la pg
 const selectMenu = () => {
   let comand = prompt("Opciones");
   switch (comand) {
@@ -85,16 +122,16 @@ const selectMenu = () => {
       dig();
       break;
     case "2":
-      allPower[0].checkGold(allPower[0]);
+      pickaxe.checkGold();
       break;
     case "3":
-      allPower[1].checkGold(allPower[1]);
+      groundDig.checkGold();
       break;
     case "4":
-      allPower[2].checkGold(allPower[2]);
+      stoneDig.checkGold();
       break;
     case "5":
-      allPower[3].checkGold(allPower[3]);
+      copperDig.checkGold();
       break;
     case "6":
       endGame();
@@ -108,6 +145,7 @@ const selectMenu = () => {
   }
 };
 
+//añadir a la pg
 const endGame = () => console.log("Chao todo el oro se perdio :(");
 const exitGame = () => console.log("Chao");
 

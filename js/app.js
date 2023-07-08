@@ -1,8 +1,20 @@
-let gold = 100000000000000000000;
+let gold = 0;
 let allPower = [];
 const carrucel = document.querySelector(".container__carrucel__card");
 
-//document.addEventListener("DOMContentLoaded", () => {});
+document.addEventListener("DOMContentLoaded", () => {
+  const buyPickaxeBtn = document.querySelector("#button2");
+  const buygroundDigBtn = document.querySelector("#button3");
+  const buystoneDigBtn = document.querySelector("#button4");
+  const buycopperDigBtn = document.querySelector("#button5");
+  const digBtn = document.querySelector("#dig");
+
+  buyPickaxeBtn.addEventListener("click", buyPickaxe);
+  buygroundDigBtn.addEventListener("click", buygroundDig);
+  buystoneDigBtn.addEventListener("click", buystoneDig);
+  buycopperDigBtn.addEventListener("click", buycopperDig);
+  digBtn.addEventListener("click", dig);
+});
 
 class Digger {
   constructor(name, cost, power, lvl, buyed, console) {
@@ -51,31 +63,13 @@ const groundDig = new Digger("Mina de tierra", 100, 0, 0, false, 3);
 const stoneDig = new Digger("Mina de piedra", 1000, 0, 0, false, 4);
 const copperDig = new Digger("Mina de cobre", 10000, 0, 0, false, 5);
 
-const buyPickaxeBtn = document.querySelector("#button2");
-const buygroundDigBtn = document.querySelector("#button3");
-const buystoneDigBtn = document.querySelector("#button4");
-const buycopperDigBtn = document.querySelector("#button5");
-
-const buyPickaxe = () => {
-  return pickaxe.checkGold();
-};
-const buygroundDig = () => {
-  return groundDig.checkGold();
-};
-const buystoneDig = () => {
-  return stoneDig.checkGold();
-};
-const buycopperDig = () => {
-  return copperDig.checkGold();
-};
-
-buyPickaxeBtn.addEventListener("click", buyPickaxe);
-buygroundDigBtn.addEventListener("click", buygroundDig);
-buystoneDigBtn.addEventListener("click", buystoneDig);
-buycopperDigBtn.addEventListener("click", buycopperDig);
+const buyPickaxe = () => pickaxe.checkGold();
+const buygroundDig = () => groundDig.checkGold();
+const buystoneDig = () => stoneDig.checkGold();
+const buycopperDig = () => copperDig.checkGold();
 
 //cambiar
-const display = () => {
+/*const display = () => {
   let comand = prompt("desea jugar Y/N");
   if (comand === "y" || comand === "Y") {
     displayMenu();
@@ -83,9 +77,8 @@ const display = () => {
     exitGame();
     display();
   }
-};
+};*/
 
-//añadir btn
 const dig = () => {
   let totalPower = 0;
   allPower.forEach((dig) => {
@@ -115,7 +108,7 @@ const displayMenu = () => {
 };
 
 //añadir a la pg
-const selectMenu = () => {
+/*const selectMenu = () => {
   let comand = prompt("Opciones");
   switch (comand) {
     case "1":
@@ -143,10 +136,10 @@ const selectMenu = () => {
       displayMenu();
       break;
   }
-};
+};*/
 
 //añadir a la pg
 const endGame = () => console.log("Chao todo el oro se perdio :(");
 const exitGame = () => console.log("Chao");
 
-display();
+//display();

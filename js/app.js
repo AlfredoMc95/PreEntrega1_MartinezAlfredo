@@ -10,6 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const buygroundDigBtn = document.querySelector("#button3");
   const buystoneDigBtn = document.querySelector("#button4");
   const buycopperDigBtn = document.querySelector("#button5");
+  const cardNamesUi = document.querySelectorAll(".card__name");
+  const cardLvlUi = document.querySelectorAll(".card__lvl");
+  const cardCostUi = document.querySelectorAll(".card__cost");
+  const cardPowerUi = document.querySelectorAll(".card__power");
+  const cardImageUi = document.querySelectorAll(".card__image");
   const digBtn = document.querySelector("#dig");
 
   buyPickaxeBtn.addEventListener("click", buyPickaxe);
@@ -20,20 +25,21 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 class Digger {
-  constructor(name, cost, power, lvl, buyed, console) {
+  constructor(name, cost, power, lvl, buyed, console, image) {
     this.name = name;
     this.cost = cost;
     this.power = power;
     this.lvl = lvl;
     this.buyed = buyed;
     this.console = console;
+    this.image = image;
     allPower.push(this);
     carrucel.innerHTML += `<button class="card" id="button${this.console}">
       <span class="card__name">${this.name}</span>
       <span class="card__lvl">Lvl: ${this.lvl}</span>
       <span class="card__cost">Precio Mejora: ${this.cost}$</span>
       <span class="card__power">Poder: ${this.power}</span>
-      <span class="card__image"><img src="" alt=""></span>
+      <span class="card__image"><img src="${this.image}" alt=""></span>
       </button>`;
   }
   checkGold() {
@@ -65,9 +71,9 @@ class Digger {
 }
 
 const pickaxe = new Digger("Pico", 10, 1, 1, true, 2);
-const groundDig = new Digger("Mina de tierra", 100, 0, 0, false, 3);
-const stoneDig = new Digger("Mina de piedra", 1000, 0, 0, false, 4);
-const copperDig = new Digger("Mina de cobre", 10000, 0, 0, false, 5);
+const groundDig = new Digger("Mina de tierra", 100, 0, 0, false, 3, "");
+const stoneDig = new Digger("Mina de piedra", 1000, 0, 0, false, 4, "");
+const copperDig = new Digger("Mina de cobre", 10000, 0, 0, false, 5, "");
 
 const buyPickaxe = () => pickaxe.checkGold();
 const buygroundDig = () => groundDig.checkGold();

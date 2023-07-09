@@ -22,6 +22,12 @@ body{
                 text-transform: uppercase;
                 color: $color-text-complement;
             }
+            &__gold{
+                #warning{
+                    color:  red;
+                    text-decoration: underline;
+                }
+            }
             &__button__dig{
                 background-color: rgb(95, 43, 43);
                 padding: 20px;

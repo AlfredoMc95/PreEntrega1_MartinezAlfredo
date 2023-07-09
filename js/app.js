@@ -1,6 +1,9 @@
-let gold = 0;
+let gold = 10000;
+let textWarning = "";
 let allPower = [];
 const carrucel = document.querySelector(".container__carrucel__card");
+const goldUi = document.querySelector("#oro");
+const warningUi = document.querySelector("#warning");
 
 document.addEventListener("DOMContentLoaded", () => {
   const buyPickaxeBtn = document.querySelector("#button2");
@@ -36,8 +39,10 @@ class Digger {
   checkGold() {
     if (gold >= this.cost) {
       this.firstBuy();
+      updateWarning("");
     } else {
       console.log("Oro insuficiente");
+      updateWarning("Oro insuficiente");
       displayMenu();
     }
   }
@@ -55,6 +60,7 @@ class Digger {
     this.power += this.cost / 2;
     this.cost = this.lvl * this.power * 4;
     displayMenu();
+    updateGold();
   }
 }
 
@@ -67,6 +73,19 @@ const buyPickaxe = () => pickaxe.checkGold();
 const buygroundDig = () => groundDig.checkGold();
 const buystoneDig = () => stoneDig.checkGold();
 const buycopperDig = () => copperDig.checkGold();
+
+/* const displayCards = () => {
+  allPower.forEach((card) => {
+    carrucel.innerHTML += `<button class="card" id="button${card.console}">
+    <scard class="card__name">${card.name}</scard
+    <span class="card__lvl">Lvl: ${tcardlvl}</span>
+    <span class="card__cost">Precio Mejora: ${card.cost}$</span>
+    <span class="card__power">Poder: ${card.power}</span>
+    <span class="card__image"><img src="" alt=""></span>
+    </button>
+    `;
+  });
+}; */
 
 //cambiar
 /*const display = () => {
@@ -87,6 +106,7 @@ const dig = () => {
     }
   });
   gold += totalPower;
+  updateGold();
   displayMenu();
 };
 
@@ -138,8 +158,15 @@ const displayMenu = () => {
   }
 };*/
 
+const updateGold = () => {
+  goldUi.textContent = gold;
+  updateWarning("");
+};
+const updateWarning = (mensaje) => (warningUi.textContent = mensaje);
+
 //añadir a la pg
 const endGame = () => console.log("Chao todo el oro se perdio :(");
 const exitGame = () => console.log("Chao");
 
 //display();
+displayButtons();

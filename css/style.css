@@ -69,6 +69,10 @@ body .container__text span {
   text-transform: uppercase;
   color: #b900b9;
 }
+body .container__text__gold #warning {
+  color: red;
+  text-decoration: underline;
+}
 body .container__text__button__dig {
   background-color: rgb(95, 43, 43);
   padding: 20px;

@@ -1,4 +1,4 @@
-let gold = 10000;
+let gold = 0;
 let textWarning = "";
 let allPower = [];
 const carrucel = document.querySelector(".container__carrucel__card");
@@ -6,15 +6,10 @@ const goldUi = document.querySelector("#oro");
 const warningUi = document.querySelector("#warning");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const buyPickaxeBtn = document.querySelector("#button2");
-  const buygroundDigBtn = document.querySelector("#button3");
-  const buystoneDigBtn = document.querySelector("#button4");
-  const buycopperDigBtn = document.querySelector("#button5");
-  const cardNamesUi = document.querySelectorAll(".card__name");
-  const cardLvlUi = document.querySelectorAll(".card__lvl");
-  const cardCostUi = document.querySelectorAll(".card__cost");
-  const cardPowerUi = document.querySelectorAll(".card__power");
-  const cardImageUi = document.querySelectorAll(".card__image");
+  const buyPickaxeBtn = document.querySelector("#button0");
+  const buygroundDigBtn = document.querySelector("#button1");
+  const buystoneDigBtn = document.querySelector("#button2");
+  const buycopperDigBtn = document.querySelector("#button3");
   const digBtn = document.querySelector("#dig");
 
   buyPickaxeBtn.addEventListener("click", buyPickaxe);
@@ -25,19 +20,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 class Digger {
-  constructor(name, cost, power, lvl, buyed, console, image) {
+  constructor(name, id, cost, power, lvl, buyed, image) {
     this.name = name;
+    this.id = id;
     this.cost = cost;
     this.power = power;
     this.lvl = lvl;
     this.buyed = buyed;
-    this.console = console;
     this.image = image;
     allPower.push(this);
-    carrucel.innerHTML += `<button class="card" id="button${this.console}">
+    carrucel.innerHTML += `<button class="card" id="button${this.id}">
       <span class="card__name">${this.name}</span>
       <span class="card__lvl">Lvl: ${this.lvl}</span>
-      <span class="card__cost">Precio Mejora: ${this.cost}$</span>
+      <span class="card__cost">Precio: ${this.cost}$</span>
       <span class="card__power">Poder: ${this.power}</span>
       <span class="card__image"><img src="${this.image}" alt=""></span>
       </button>`;
@@ -63,35 +58,28 @@ class Digger {
   buyUpgrade() {
     gold -= this.cost;
     this.lvl++;
-    this.power += this.cost / 2;
+    this.power += Math.round(this.cost / 4);
     this.cost = this.lvl * this.power * 4;
     displayMenu();
     updateGold();
+    updateDiggersVal(this.id);
   }
 }
 
-const pickaxe = new Digger("Pico", 10, 1, 1, true, 2);
-const groundDig = new Digger("Mina de tierra", 100, 0, 0, false, 3, "");
-const stoneDig = new Digger("Mina de piedra", 1000, 0, 0, false, 4, "");
-const copperDig = new Digger("Mina de cobre", 10000, 0, 0, false, 5, "");
+const pickaxe = new Digger("Pico", 0, 10, 1, 1, true, "");
+const groundDig = new Digger("Mina de tierra", 1, 100, 0, 0, false, "");
+const stoneDig = new Digger("Mina de piedra", 2, 1000, 0, 0, false, "");
+const copperDig = new Digger("Mina de cobre", 3, 10000, 0, 0, false, "");
 
 const buyPickaxe = () => pickaxe.checkGold();
 const buygroundDig = () => groundDig.checkGold();
 const buystoneDig = () => stoneDig.checkGold();
 const buycopperDig = () => copperDig.checkGold();
 
-/* const displayCards = () => {
-  allPower.forEach((card) => {
-    carrucel.innerHTML += `<button class="card" id="button${card.console}">
-    <scard class="card__name">${card.name}</scard
-    <span class="card__lvl">Lvl: ${tcardlvl}</span>
-    <span class="card__cost">Precio Mejora: ${card.cost}$</span>
-    <span class="card__power">Poder: ${card.power}</span>
-    <span class="card__image"><img src="" alt=""></span>
-    </button>
-    `;
-  });
-}; */
+const cardLvlUi = document.querySelectorAll(".card__lvl");
+const cardCostUi = document.querySelectorAll(".card__cost");
+const cardPowerUi = document.querySelectorAll(".card__power");
+const cardImageUi = document.querySelectorAll(".card__image");
 
 //cambiar
 /*const display = () => {
@@ -116,6 +104,12 @@ const dig = () => {
   displayMenu();
 };
 
+const updateDiggersVal = (digger) => {
+  console.log(cardLvlUi);
+  cardLvlUi[digger].textContent = `Lvl: ${allPower[digger].lvl}`;
+  cardCostUi[digger].textContent = `Precio: ${allPower[digger].cost}$`;
+  cardPowerUi[digger].textContent = `Poder: ${allPower[digger].power}`;
+};
 //añadir a la pg
 const displayMenu = () => {
   console.log("------------------------------");
@@ -175,4 +169,3 @@ const endGame = () => console.log("Chao todo el oro se perdio :(");
 const exitGame = () => console.log("Chao");
 
 //display();
-displayButtons();

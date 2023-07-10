@@ -59,7 +59,6 @@ class Digger {
     this.lvl++;
     this.power += Math.round(this.cost / 4);
     this.cost = this.lvl * this.power * 4;
-    displayMenu();
     updateGold();
     updateDiggersVal(this.id);
   }

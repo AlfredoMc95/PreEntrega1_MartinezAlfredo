@@ -21,7 +21,7 @@ li {
 }
 
 body {
-  background-color: #212f3d;
+  background-color: #424f68;
 }
 
 button {
@@ -31,6 +31,7 @@ button {
 
 body {
   padding: 40px;
+  background-color: #4d2615;
 }
 body .title {
   display: flex;
@@ -40,6 +41,7 @@ body .title {
   flex-wrap: none;
   gap: none;
   margin-bottom: 40px;
+  background-color: rgb(128, 41, 41);
 }
 body .title h1 span {
   text-transform: uppercase;
@@ -52,6 +54,8 @@ body .container {
   align-items: center;
   flex-wrap: none;
   gap: 20px;
+  background-image: url(../../multimedia/img/bgpg.webp);
+  background-size: contain;
 }
 body .container__text {
   display: flex;
@@ -64,6 +68,7 @@ body .container__text {
   font-size: 20px;
   margin: 40px;
   width: 75%;
+  background-color: rgb(46, 26, 26);
 }
 body .container__text span {
   text-transform: uppercase;

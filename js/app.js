@@ -42,7 +42,6 @@ class Digger {
       this.firstBuy();
       updateWarning("");
     } else {
-      console.log("Oro insuficiente");
       updateWarning("Oro insuficiente");
       displayMenu();
     }
@@ -81,17 +80,6 @@ const cardCostUi = document.querySelectorAll(".card__cost");
 const cardPowerUi = document.querySelectorAll(".card__power");
 const cardImageUi = document.querySelectorAll(".card__image");
 
-//cambiar
-/*const display = () => {
-  let comand = prompt("desea jugar Y/N");
-  if (comand === "y" || comand === "Y") {
-    displayMenu();
-  } else {
-    exitGame();
-    display();
-  }
-};*/
-
 const dig = () => {
   let totalPower = 0;
   allPower.forEach((dig) => {
@@ -101,71 +89,17 @@ const dig = () => {
   });
   gold += totalPower;
   updateGold();
-  displayMenu();
 };
 
 const updateDiggersVal = (digger) => {
-  console.log(cardLvlUi);
   cardLvlUi[digger].textContent = `Lvl: ${allPower[digger].lvl}`;
   cardCostUi[digger].textContent = `Precio: ${allPower[digger].cost}$`;
   cardPowerUi[digger].textContent = `Poder: ${allPower[digger].power}`;
 };
-//añadir a la pg
-const displayMenu = () => {
-  console.log("------------------------------");
-  console.log(`Oro: ${gold}`);
-  console.log("------------------------------");
-  console.log(`Opciones`);
-  console.log(`1: Escabar`);
-  allPower.forEach((digger) => {
-    console.log(
-      `${digger.console}: Mejorar ${digger.name} lvl: ${digger.lvl}, ${digger.cost}$, poder: ${digger.power}.`
-    );
-  });
-  console.log(`6: Salir`);
-  console.log("------------------------------");
-  //selectMenu();
-};
-
-//añadir a la pg
-/*const selectMenu = () => {
-  let comand = prompt("Opciones");
-  switch (comand) {
-    case "1":
-      dig();
-      break;
-    case "2":
-      pickaxe.checkGold();
-      break;
-    case "3":
-      groundDig.checkGold();
-      break;
-    case "4":
-      stoneDig.checkGold();
-      break;
-    case "5":
-      copperDig.checkGold();
-      break;
-    case "6":
-      endGame();
-      break;
-    default:
-      console.log("------------------------------");
-      console.log("Comando no valido");
-      console.log("------------------------------");
-      displayMenu();
-      break;
-  }
-};*/
 
 const updateGold = () => {
   goldUi.textContent = gold;
   updateWarning("");
 };
+
 const updateWarning = (mensaje) => (warningUi.textContent = mensaje);
-
-//añadir a la pg
-const endGame = () => console.log("Chao todo el oro se perdio :(");
-const exitGame = () => console.log("Chao");
-
-//display();

@@ -1,7 +1,7 @@
 let gold = 0;
 let textWarning = "";
 let allPower = [];
-const carrucel = document.querySelector(".container__carrucel__card");
+const carrucel = document.querySelector(".container__carrucel__cards");
 const goldUi = document.querySelector("#oro");
 const warningUi = document.querySelector("#warning");
 
@@ -29,13 +29,20 @@ class Digger {
     this.buyed = buyed;
     this.image = image;
     allPower.push(this);
-    carrucel.innerHTML += `<button class="card" id="button${this.id}">
-      <span class="card__name">${this.name}</span>
-      <span class="card__lvl">Lvl: ${this.lvl}</span>
-      <span class="card__cost">Precio: ${this.cost}$</span>
-      <span class="card__power">Poder: ${this.power}</span>
-      <span class="card__image"><img src="${this.image}" alt=""></span>
-      </button>`;
+    carrucel.innerHTML += `
+    <button class="card" id="button${this.id}">
+      <div class="card__title">
+          <span class="card__title__name">${this.name}</span>
+      </div>
+      <div class="card__img">
+          <span class="card__img__Photo"><img src="${this.image}" alt=""></span>
+      </div>
+      <div class="card__text">
+          <span class="card__text__lvl">Lvl: ${this.lvl}</span>
+          <span class="card__text__cost">${this.cost}$</span>
+          <span class="card__text__power">Poder: ${this.power}</span>
+      </div>
+    </button>`;
   }
   checkGold() {
     if (gold >= this.cost) {
@@ -57,27 +64,59 @@ class Digger {
   buyUpgrade() {
     gold -= this.cost;
     this.lvl++;
-    this.power += Math.round(this.cost / 4);
-    this.cost = this.lvl * this.power * 4;
+    this.power += Math.round(this.cost / 6);
+    this.cost = this.lvl * this.power * 5;
     updateGold();
     updateDiggersVal(this.id);
   }
 }
 
-const pickaxe = new Digger("Pico", 0, 10, 1, 1, true, "");
-const groundDig = new Digger("Mina de tierra", 1, 100, 0, 0, false, "");
-const stoneDig = new Digger("Mina de piedra", 2, 1000, 0, 0, false, "");
-const copperDig = new Digger("Mina de cobre", 3, 10000, 0, 0, false, "");
+const pickaxe = new Digger(
+  "Pico",
+  0,
+  10,
+  1,
+  1,
+  true,
+  "multimedia/img/pickaxe.webp"
+);
+const groundDig = new Digger(
+  "Mina de tierra",
+  1,
+  100,
+  0,
+  0,
+  false,
+  "multimedia/img/pickaxe.webp"
+);
+const stoneDig = new Digger(
+  "Mina de piedra",
+  2,
+  1000,
+  0,
+  0,
+  false,
+  "multimedia/img/pickaxe.webp"
+);
+const copperDig = new Digger(
+  "Mina de cobre",
+  3,
+  10000,
+  0,
+  0,
+  false,
+  "multimedia/img/pickaxe.webp"
+);
 
 const buyPickaxe = () => pickaxe.checkGold();
 const buygroundDig = () => groundDig.checkGold();
 const buystoneDig = () => stoneDig.checkGold();
 const buycopperDig = () => copperDig.checkGold();
 
-const cardLvlUi = document.querySelectorAll(".card__lvl");
-const cardCostUi = document.querySelectorAll(".card__cost");
-const cardPowerUi = document.querySelectorAll(".card__power");
-const cardImageUi = document.querySelectorAll(".card__image");
+const cardLvlUi = document.querySelectorAll(".card__text__lvl");
+const cardCostUi = document.querySelectorAll(".card__text__cost");
+const cardPowerUi = document.querySelectorAll(".card__text__power");
+const cardImageUi = document.querySelectorAll(".card__img__Photo");
 
 const dig = () => {
   let totalPower = 0;
@@ -92,7 +131,7 @@ const dig = () => {
 
 const updateDiggersVal = (digger) => {
   cardLvlUi[digger].textContent = `Lvl: ${allPower[digger].lvl}`;
-  cardCostUi[digger].textContent = `Precio: ${allPower[digger].cost}$`;
+  cardCostUi[digger].textContent = `${allPower[digger].cost}$`;
   cardPowerUi[digger].textContent = `Poder: ${allPower[digger].power}`;
 };
 

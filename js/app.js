@@ -1,22 +1,24 @@
 let gold = 0;
 let textWarning = "";
 let allPower = [];
+let loadGoldData = localStorage.getItem("totalGold");
 const carrucel = document.querySelector(".container__carrucel__cards");
 const goldUi = document.querySelector("#oro");
+const resetgolBtn = document.querySelector("#resetGold");
 const warningUi = document.querySelector("#warning");
+const digBtn = document.querySelector("#dig");
 
 document.addEventListener("DOMContentLoaded", () => {
   const buyPickaxeBtn = document.querySelector("#button0");
   const buygroundDigBtn = document.querySelector("#button1");
   const buystoneDigBtn = document.querySelector("#button2");
   const buycopperDigBtn = document.querySelector("#button3");
-  const digBtn = document.querySelector("#dig");
 
   buyPickaxeBtn.addEventListener("click", buyPickaxe);
   buygroundDigBtn.addEventListener("click", buygroundDig);
   buystoneDigBtn.addEventListener("click", buystoneDig);
   buycopperDigBtn.addEventListener("click", buycopperDig);
-  digBtn.addEventListener("click", dig);
+  loadGold();
 });
 
 class Digger {
@@ -66,6 +68,7 @@ class Digger {
     this.lvl++;
     this.power += Math.round(this.cost / 6);
     this.cost = this.lvl * this.power * 5;
+    saveGold();
     updateGold();
     updateDiggersVal(this.id);
   }
@@ -87,7 +90,7 @@ const groundDig = new Digger(
   0,
   0,
   false,
-  "multimedia/img/pickaxe.webp"
+  "multimedia/img/clayDig.webp"
 );
 const stoneDig = new Digger(
   "Mina de piedra",
@@ -96,7 +99,7 @@ const stoneDig = new Digger(
   0,
   0,
   false,
-  "multimedia/img/pickaxe.webp"
+  "multimedia/img/StoneDig.webp"
 );
 const copperDig = new Digger(
   "Mina de cobre",
@@ -105,7 +108,7 @@ const copperDig = new Digger(
   0,
   0,
   false,
-  "multimedia/img/pickaxe.webp"
+  "multimedia/img/cooperDig.webp"
 );
 
 const buyPickaxe = () => pickaxe.checkGold();
@@ -137,7 +140,31 @@ const updateDiggersVal = (digger) => {
 
 const updateGold = () => {
   goldUi.textContent = gold;
+  saveGold();
   updateWarning("");
 };
-
+const reset = () => {
+  localStorage.clear();
+  gold = 0;
+  updateGold();
+};
+const loadGold = () => {
+  if (loadGoldData === null) {
+    loadGoldData = gold;
+    console.log("no existe");
+    updateGold();
+  } else {
+    gold = Number(loadGoldData);
+    console.log("existe");
+    console.log(typeof loadGoldData);
+    console.log(loadGoldData);
+    updateGold();
+  }
+};
+const saveGold = () => {
+  localStorage.totalGold = gold;
+};
 const updateWarning = (mensaje) => (warningUi.textContent = mensaje);
+
+resetgolBtn.addEventListener("click", reset);
+digBtn.addEventListener("click", dig);

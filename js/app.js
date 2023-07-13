@@ -30,7 +30,7 @@ class Digger {
     this.lvl = lvl;
     this.buyed = buyed;
     this.image = image;
-    allPower.push(this);
+    //allPower.push(this);
     carrucel.innerHTML += `
     <button class="card" id="button${this.id}">
       <div class="card__title">
@@ -52,7 +52,6 @@ class Digger {
       updateWarning("");
     } else {
       updateWarning("Oro insuficiente");
-      displayMenu();
     }
   }
   firstBuy() {
@@ -75,7 +74,61 @@ class Digger {
   }
 }
 
-const pickaxe = new Digger(
+const displayDiggers = () => {
+  const newDiggers = `[
+    {
+      "nombre": "Pico",
+      "id": 0,
+      "cost": 10,
+      "power": 1,
+      "lvl": 1,
+      "buyed": true,
+      "image": "multimedia/img/pickaxe.webp"
+    },
+    {
+      "nombre": "Mina de tierra",
+      "id": 1,
+      "cost": 100,
+      "power": 0,
+      "lvl": 0,
+      "buyed": false,
+      "image": "multimedia/img/clayDig.webp"
+    },
+    {
+      "nombre": "Mina de piedra",
+      "id": 2,
+      "cost": 1000,
+      "power": 0,
+      "lvl": 0,
+      "buyed": false,
+      "image": "multimedia/img/StoneDig.webp"
+    },
+    {
+      "nombre": "Mina de cobre",
+      "id": 3,
+      "cost": 10000,
+      "power": 0,
+      "lvl": 0,
+      "buyed": false,
+      "image": "multimedia/img/cooperDig.webp"
+    }
+  ]`;
+  const jsonDiggers = JSON.parse(newDiggers);
+  for (const digger of jsonDiggers) {
+    const newDigger = new Digger(
+      digger.name,
+      digger.id,
+      digger.cost,
+      digger.power,
+      digger.lvl,
+      digger.buyed,
+      digger.image
+    );
+    allPower.push(newDigger);
+  }
+};
+
+/* const pickaxe = new Digger(
   "Pico",
   0,
   10,
@@ -110,12 +163,34 @@ const copperDig = new Digger(
   0,
   false,
   "multimedia/img/cooperDig.webp"
-);
+); */
 
-const buyPickaxe = () => pickaxe.checkGold();
-const buygroundDig = () => groundDig.checkGold();
-const buystoneDig = () => stoneDig.checkGold();
-const buycopperDig = () => copperDig.checkGold();
+const loadDiggers = () => {
+  const diggersSaved = JSON.parse(localStorage.getItem("digger"));
+  if (diggersSaved === null) {
+    displayDiggers();
+  } else {
+    for (const digger of diggersSaved) {
+      const newDigger = new Digger(
+        digger.name,
+        digger.id,
+        digger.cost,
+        digger.power,
+        digger.lvl,
+        digger.buyed,
+        digger.image
+      );
+      allPower.push(newDigger);
+    }
+  }
+};
+
+loadDiggers();
+
+const buyPickaxe = () => allPower[0].checkGold();
+const buygroundDig = () => allPower[1].checkGold();
+const buystoneDig = () => allPower[2].checkGold();
+const buycopperDig = () => allPower[3].checkGold();
 
 const cardLvlUi = document.querySelectorAll(".card__text__lvl");
 const cardCostUi = document.querySelectorAll(".card__text__cost");
@@ -152,13 +227,9 @@ const reset = () => {
 const loadGold = () => {
   if (loadGoldData === null) {
     loadGoldData = gold;
-    console.log("no existe");
     updateGold();
   } else {
     gold = Number(loadGoldData);
-    console.log("existe");
-    console.log(typeof loadGoldData);
-    console.log(loadGoldData);
     updateGold();
   }
 };
@@ -166,7 +237,6 @@ const saveGold = () => {
   localStorage.totalGold = gold;
 };
 const updateWarning = (mensaje) => (warningUi.textContent = mensaje);
-
 const savediggers = () => {
   let diggersPower = JSON.stringify(allPower);
   localStorage.setItem("digger", diggersPower);

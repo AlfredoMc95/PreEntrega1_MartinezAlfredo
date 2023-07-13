@@ -71,6 +71,7 @@ class Digger {
     saveGold();
     updateGold();
     updateDiggersVal(this.id);
+    savediggers();
   }
 }
 
@@ -165,6 +166,11 @@ const saveGold = () => {
   localStorage.totalGold = gold;
 };
 const updateWarning = (mensaje) => (warningUi.textContent = mensaje);
+
+const savediggers = () => {
+  let diggersPower = JSON.stringify(allPower);
+  localStorage.setItem("digger", diggersPower);
+};
 
 resetgolBtn.addEventListener("click", reset);
 digBtn.addEventListener("click", dig);

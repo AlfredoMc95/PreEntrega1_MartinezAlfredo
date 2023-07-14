@@ -31,19 +31,27 @@ class Digger {
     this.buyed = objDigger.buyed;
     this.image = objDigger.image;
     carrucel.innerHTML += `
-    <button class="card" id="button${this.id}">
-      <div class="card__title">
-          <span class="card__title__name">${this.name}</span>
-      </div>
-      <div class="card__img">
-          <span class="card__img__Photo"><img src="${this.image}" alt=""></span>
-      </div>
-      <div class="card__text">
-          <span class="card__text__lvl">Lvl: ${this.lvl}</span>
-          <span class="card__text__cost">${this.cost}$</span>
-          <span class="card__text__power">Poder: ${this.power}</span>
-      </div>
-    </button>`;
+    <div class="card">
+    <div class="card__lvl">
+        <p>Lv.<span class="card__lvl__text">${this.lvl}</span></p>
+    </div>
+    <div class="card__info">
+        <div class="card__info__img">
+            <img src="${this.image}" alt="">
+        </div>
+        <div class="card__info__text">
+            <p>Poder: <span class="card__info__power">${this.power}</span></p>
+            <button class="card__info__text__button" id="button${this.id}">
+                <div class="card__info__text__button__img">
+                    <img src="multimedia/img/coin..webp" alt="coin">
+                </div>
+                <div class="card__info__text__button__cost">
+                    <span class="card__info__text__button__cost__info">${this.cost}</span>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>`;
   }
   checkGold() {
     if (gold >= this.cost) {
@@ -132,10 +140,11 @@ const buygroundDig = () => allPower[1].checkGold();
 const buystoneDig = () => allPower[2].checkGold();
 const buycopperDig = () => allPower[3].checkGold();
 
-const cardLvlUi = document.querySelectorAll(".card__text__lvl");
-const cardCostUi = document.querySelectorAll(".card__text__cost");
-const cardPowerUi = document.querySelectorAll(".card__text__power");
-const cardImageUi = document.querySelectorAll(".card__img__Photo");
+const cardLvlUi = document.querySelectorAll(".card__lvl__text");
+const cardCostUi = document.querySelectorAll(
+  ".card__info__text__button__cost__info"
+);
+const cardPowerUi = document.querySelectorAll(".card__info__power");
 
 const dig = () => {
   let totalPower = 0;
@@ -148,9 +157,9 @@ const dig = () => {
   updateGold();
 };
 const updateDiggersVal = (digger) => {
-  cardLvlUi[digger].textContent = `Lvl: ${allPower[digger].lvl}`;
-  cardCostUi[digger].textContent = `${allPower[digger].cost}$`;
-  cardPowerUi[digger].textContent = `Poder: ${allPower[digger].power}`;
+  cardLvlUi[digger].textContent = `${allPower[digger].lvl}`;
+  cardCostUi[digger].textContent = `${allPower[digger].cost}`;
+  cardPowerUi[digger].textContent = `${allPower[digger].power}`;
 };
 const updateGold = () => {
   goldUi.textContent = gold;

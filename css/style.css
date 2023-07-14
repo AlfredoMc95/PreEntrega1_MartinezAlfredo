@@ -20,10 +20,6 @@ li {
   list-style: none;
 }
 
-body {
-  background-color: #424f68;
-}
-
 button {
   background-color: transparent;
   border: none;
@@ -105,6 +101,7 @@ body .container__carrucel {
   overflow-x: hidden;
 }
 body .container__carrucel__cards {
+  margin: 20px;
   /*             .card {
       @include d-flex(column, center, center, wrap, 20px);
       padding: 20px;
@@ -137,6 +134,74 @@ body .container__carrucel__cards {
 }
 body .container__carrucel__cards .card {
   background-color: rgb(146, 63, 63);
+  border: 2px solid red;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+body .container__carrucel__cards .card__lvl {
+  background-color: blue;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 10px 20px;
+}
+body .container__carrucel__cards .card__lvl p {
+  font-weight: bold;
+  color: #1a1a1a;
+}
+body .container__carrucel__cards .card__lvl span {
+  font-weight: bold;
+  color: #1a1a1a;
+  font-size: 18px;
+}
+body .container__carrucel__cards .card__info {
+  display: flex;
+  flex-direction: row;
+  justify-content: none;
+  align-items: none;
+  flex-wrap: none;
+  gap: 0px;
+  padding: 10px;
+  background-color: yellow;
+}
+body .container__carrucel__cards .card__info__img {
+  width: 50%;
+}
+body .container__carrucel__cards .card__info__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: none;
+  gap: 20px;
+  width: 50%;
+  background-color: green;
+}
+body .container__carrucel__cards .card__info__text p {
+  font-weight: bold;
+  color: #1a1a1a;
+  font-size: 20px;
+}
+body .container__carrucel__cards .card__info__text span {
+  font-weight: bold;
+  color: #1a1a1a;
+  font-size: 20px;
+}
+body .container__carrucel__cards .card__info__text__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: none;
+  gap: 0px;
+  max-width: 100px;
+  background-color: red;
+  padding: 4px 15px 4px 5px;
+  border: 3px solid blue;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body .container__carrucel__cards .card__info__text__button__img {
+  width: 50px;
 }
 
 /*# sourceMappingURL=style.css.map */

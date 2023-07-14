@@ -66,8 +66,62 @@ body {
             overflow: scroll;
             overflow-x: hidden;
             &__cards{
+                margin: 20px;
                 .card{
                     background-color: rgb(146, 63, 63);
+                    border: 2px solid red;
+                    border-radius: 4px;
+                    margin-bottom: 20px;
+                    &__lvl{
+                        background-color: blue;
+                        border-top-left-radius: 4px;
+                        border-top-right-radius: 4px;
+                        padding: 10px 20px;
+                        p{
+                            font-weight: bold;
+                            color: #1a1a1a;
+                        }
+                        span{
+                            font-weight: bold;
+                            color: #1a1a1a;
+                            font-size: 18px;
+                        }
+                    }
+                    &__info{
+                        @include d-flex(row, none, none, none, 0px);
+                        padding: 10px;
+                        background-color: yellow;
+                        &__img{
+                            width: 50%;
+                        }
+                        &__text{
+                            @include d-flex(column, center, center, none, 20px);
+                            width: 50%;
+                            background-color: green;
+                            p{
+                                font-weight: bold;
+                                color: #1a1a1a;
+                                font-size: 20px;
+                            }
+                            span{
+                                font-weight: bold;
+                                color: #1a1a1a;
+                                font-size: 20px;
+                            }
+                            &__button{
+                                @include d-flex(row, center, center, none, 0px);
+                                max-width: 100px;
+                                background-color: red;
+                                padding: 4px 15px 4px 5px; 
+                                border: 3px solid blue;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                &__img{
+                                    width: 50px;
+                                }
+                            }
+                        }
+                    }
                 }
                 /*             .card {
                 @include d-flex(column, center, center, wrap, 20px);

@@ -4,7 +4,7 @@ let allPower = [];
 let loadGoldData = localStorage.getItem("totalGold");
 const carrucel = document.querySelector(".container__carrucel__cards");
 const goldUi = document.querySelector("#oro");
-const resetgolBtn = document.querySelector("#resetGold");
+const resetgoldBtn = document.querySelector("#resetGold");
 const warningUi = document.querySelector("#warning");
 const digBtn = document.querySelector("#dig");
 
@@ -22,15 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 class Digger {
-  constructor(name, id, cost, power, lvl, buyed, image) {
-    this.name = name;
-    this.id = id;
-    this.cost = cost;
-    this.power = power;
-    this.lvl = lvl;
-    this.buyed = buyed;
-    this.image = image;
-    //allPower.push(this);
+  constructor(objDigger) {
+    this.name = objDigger.name;
+    this.id = objDigger.id;
+    this.cost = objDigger.cost;
+    this.power = objDigger.power;
+    this.lvl = objDigger.lvl;
+    this.buyed = objDigger.buyed;
+    this.image = objDigger.image;
     carrucel.innerHTML += `
     <button class="card" id="button${this.id}">
       <div class="card__title">
@@ -73,11 +72,16 @@ class Digger {
     savediggers();
   }
 }
-
+const createDiggers = (Object) => {
+  for (const digger of Object) {
+    const newDigger = new Digger(digger);
+    allPower.push(newDigger);
+  }
+};
 const displayDiggers = () => {
   const newDiggers = `[
     {
-      "nombre": "Pico",
+      "name": "Pico",
       "id": 0,
       "cost": 10,
       "power": 1,
@@ -86,7 +90,7 @@ const displayDiggers = () => {
       "image": "multimedia/img/pickaxe.webp"
     },
     {
-      "nombre": "Mina de tierra",
+      "name": "Mina de tierra",
       "id": 1,
       "cost": 100,
       "power": 0,
@@ -95,7 +99,7 @@ const displayDiggers = () => {
       "image": "multimedia/img/clayDig.webp"
     },
     {
-      "nombre": "Mina de piedra",
+      "name": "Mina de piedra",
       "id": 2,
       "cost": 1000,
       "power": 0,
@@ -104,7 +108,7 @@ const displayDiggers = () => {
       "image": "multimedia/img/StoneDig.webp"
     },
     {
-      "nombre": "Mina de cobre",
+      "name": "Mina de cobre",
       "id": 3,
       "cost": 10000,
       "power": 0,
@@ -114,75 +118,11 @@ const displayDiggers = () => {
     }
   ]`;
   const jsonDiggers = JSON.parse(newDiggers);
-  for (const digger of jsonDiggers) {
-    const newDigger = new Digger(
-      digger.name,
-      digger.id,
-      digger.cost,
-      digger.power,
-      digger.lvl,
-      digger.buyed,
-      digger.image
-    );
-    allPower.push(newDigger);
-  }
+  createDiggers(jsonDiggers);
 };
-
-/* const pickaxe = new Digger(
-  "Pico",
-  0,
-  10,
-  1,
-  1,
-  true,
-  "multimedia/img/pickaxe.webp"
-);
-const groundDig = new Digger(
-  "Mina de tierra",
-  1,
-  100,
-  0,
-  0,
-  false,
-  "multimedia/img/clayDig.webp"
-);
-const stoneDig = new Digger(
-  "Mina de piedra",
-  2,
-  1000,
-  0,
-  0,
-  false,
-  "multimedia/img/StoneDig.webp"
-);
-const copperDig = new Digger(
-  "Mina de cobre",
-  3,
-  10000,
-  0,
-  0,
-  false,
-  "multimedia/img/cooperDig.webp"
-); */
-
 const loadDiggers = () => {
   const diggersSaved = JSON.parse(localStorage.getItem("digger"));
-  if (diggersSaved === null) {
-    displayDiggers();
-  } else {
-    for (const digger of diggersSaved) {
-      const newDigger = new Digger(
-        digger.name,
-        digger.id,
-        digger.cost,
-        digger.power,
-        digger.lvl,
-        digger.buyed,
-        digger.image
-      );
-      allPower.push(newDigger);
-    }
-  }
+  diggersSaved === null ? displayDiggers() : createDiggers(diggersSaved);
 };
 
 loadDiggers();
@@ -207,13 +147,11 @@ const dig = () => {
   gold += totalPower;
   updateGold();
 };
-
 const updateDiggersVal = (digger) => {
   cardLvlUi[digger].textContent = `Lvl: ${allPower[digger].lvl}`;
   cardCostUi[digger].textContent = `${allPower[digger].cost}$`;
   cardPowerUi[digger].textContent = `Poder: ${allPower[digger].power}`;
 };
-
 const updateGold = () => {
   goldUi.textContent = gold;
   saveGold();
@@ -223,6 +161,9 @@ const reset = () => {
   localStorage.clear();
   gold = 0;
   updateGold();
+  updateWarning(
+    'porfavor recargar paguina, este boton ayuda con un "localStorage.clear()"'
+  );
 };
 const loadGold = () => {
   if (loadGoldData === null) {
@@ -242,5 +183,5 @@ const savediggers = () => {
   localStorage.setItem("digger", diggersPower);
 };
 
-resetgolBtn.addEventListener("click", reset);
+resetgoldBtn.addEventListener("click", reset);
 digBtn.addEventListener("click", dig);

@@ -159,8 +159,6 @@ const updateGold = () => {
 };
 const reset = () => {
   localStorage.clear();
-  gold = 0;
-  updateGold();
   updateWarning(
     'porfavor recargar paguina, este boton ayuda con un "localStorage.clear()"'
   );
@@ -174,9 +172,7 @@ const loadGold = () => {
     updateGold();
   }
 };
-const saveGold = () => {
-  localStorage.totalGold = gold;
-};
+const saveGold = () => (localStorage.totalGold = gold);
 const updateWarning = (mensaje) => (warningUi.textContent = mensaje);
 const savediggers = () => {
   let diggersPower = JSON.stringify(allPower);

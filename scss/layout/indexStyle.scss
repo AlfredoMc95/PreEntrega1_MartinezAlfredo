@@ -19,7 +19,6 @@ body {
         background-image: url(../../multimedia/img/bgpg.webp);
         background-size: contain;
         &__text {
-            @include d-flex(column, center, center, none, 20px);
             text-align: center;
             font-size: 20px;
             margin: 40px;
@@ -29,17 +28,23 @@ body {
                 text-transform: uppercase;
                 color: $color-text-complement;
             }
-            &__gold {
+            &__gold{
+                @include d-flex(row, flex-start, center, none, 0px);
+                &__img{
+                    width: 70px;
+                }
+                &__info{
+                    font-size: 45px;
+                    font-weight: bold;
+                }
+            }
+            &__description{
                 #warning {
                     color: red;
                     text-decoration: underline;
                 }
             }
             &__button {
-                //background-image: url(../../multimedia/img/bgBtnBG.webp);
-                //padding: 100px;
-                //background-repeat: no-repeat;
-                //background-size: contain;
                 &__dig {
                     background-color: rgb(95, 43, 43);
                     padding: 20px;
@@ -57,10 +62,14 @@ body {
             width: 20%;
             height: 800px;
             background-color: rgb(46, 46, 112);
-            padding-right: 20px;
+            //padding-right: 20px;
             overflow: scroll;
             overflow-x: hidden;
-            .card {
+            &__cards{
+                .card{
+                    background-color: rgb(146, 63, 63);
+                }
+                /*             .card {
                 @include d-flex(column, center, center, wrap, 20px);
                 padding: 20px;
                 background-color: #2c477a;
@@ -88,6 +97,7 @@ body {
                         padding: 5px;
                     }
                 }
+            } */
             }
         }
     }

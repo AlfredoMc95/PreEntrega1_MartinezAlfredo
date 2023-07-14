@@ -1,6 +1,6 @@
 [
   {
-    "nombre": "Pico",
+    "name": "Pico",
     "id": 0,
     "cost": 10,
     "power": 1,
@@ -9,7 +9,7 @@
     "image": "multimedia/img/pickaxe.webp"
   },
   {
-    "nombre": "Mina de tierra",
+    "name": "Mina de tierra",
     "id": 1,
     "cost": 100,
     "power": 0,
@@ -18,7 +18,7 @@
     "image": "multimedia/img/clayDig.webp"
   },
   {
-    "nombre": "Mina de piedra",
+    "name": "Mina de piedra",
     "id": 2,
     "cost": 1000,
     "power": 0,
@@ -27,7 +27,7 @@
     "image": "multimedia/img/StoneDig.webp"
   },
   {
-    "nombre": "Mina de cobre",
+    "name": "Mina de cobre",
     "id": 3,
     "cost": 10000,
     "power": 0,

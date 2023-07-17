@@ -1,7 +1,7 @@
 let gold = 0;
 let textWarning = "";
 let allPower = [];
-let loadGoldData = localStorage.getItem("totalGold");
+let loadGoldData = localStorage.getItem("totalGold") || 0;
 const carrucel = document.querySelector(".container__carrucel__cards");
 const goldUi = document.querySelector("#oro");
 const resetgoldBtn = document.querySelector("#resetGold");
@@ -40,6 +40,7 @@ class Digger {
             <img src="${this.image}" alt="">
         </div>
         <div class="card__info__text">
+            <p><span class="card__info__name">${this.name}</span></p>
             <p>Poder: <span class="card__info__power">${this.power}</span></p>
             <button class="card__info__text__button" id="button${this.id}">
                 <div class="card__info__text__button__img">
@@ -50,8 +51,8 @@ class Digger {
                 </div>
             </button>
         </div>
-    </div>
-</div>`;
+        </div>
+    </div>`;
   }
   checkGold() {
     if (gold >= this.cost) {
@@ -173,13 +174,8 @@ const reset = () => {
   );
 };
 const loadGold = () => {
-  if (loadGoldData === null) {
-    loadGoldData = gold;
-    updateGold();
-  } else {
-    gold = Number(loadGoldData);
-    updateGold();
-  }
+  gold = Number(loadGoldData);
+  updateGold();
 };
 const saveGold = () => (localStorage.totalGold = gold);
 const updateWarning = (mensaje) => (warningUi.textContent = mensaje);

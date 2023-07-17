@@ -23,13 +23,13 @@ body {
             font-size: 20px;
             margin: 40px;
             width: 75%;
-            background-color: rgb(46, 26, 26);
             span {
                 text-transform: uppercase;
                 color: $color-text-complement;
             }
             &__gold{
                 @include d-flex(row, flex-start, center, none, 0px);
+                background-color: rgba(46, 26, 26, 0.651);
                 &__img{
                     width: 70px;
                 }
@@ -39,13 +39,20 @@ body {
                 }
             }
             &__description{
+                background-color: rgba(46, 26, 26, 0.651);
                 #warning {
                     color: red;
                     text-decoration: underline;
                 }
             }
             &__button {
+                @include d-flex(column, center, center, none, 40px);
+                margin: 20px;
                 &__dig {
+                    padding: 20px;
+                    cursor: pointer;
+                }
+                &__reset {
                     background-color: rgb(95, 43, 43);
                     padding: 20px;
                     border: 4px solid blue;
@@ -54,6 +61,11 @@ body {
                     font-weight: bold;
                     color: green;
                     cursor: pointer;
+                }
+            }
+            button:active{                        
+                img{
+                    content: url("../../multimedia/img/btn2.webp");
                 }
             }
         }
@@ -73,7 +85,7 @@ body {
                     border-radius: 4px;
                     margin-bottom: 20px;
                     &__lvl{
-                        background-color: blue;
+                        background-color: rgb(168, 168, 192);
                         border-top-left-radius: 4px;
                         border-top-right-radius: 4px;
                         padding: 10px 20px;
@@ -98,6 +110,7 @@ body {
                             @include d-flex(column, center, center, none, 20px);
                             width: 50%;
                             background-color: green;
+                            padding: 5px;
                             p{
                                 font-weight: bold;
                                 color: #1a1a1a;
@@ -106,18 +119,18 @@ body {
                             span{
                                 font-weight: bold;
                                 color: #1a1a1a;
-                                font-size: 20px;
+                                font-size: 1rem;
                             }
                             &__button{
                                 @include d-flex(row, center, center, none, 0px);
-                                max-width: 100px;
+                                width: 100%;
                                 background-color: red;
                                 padding: 4px 15px 4px 5px; 
                                 border: 3px solid blue;
                                 border-radius: 5px;
                                 cursor: pointer;
                                 &__img{
-                                    width: 50px;
+                                    width: 50%;
                                 }
                             }
                         }

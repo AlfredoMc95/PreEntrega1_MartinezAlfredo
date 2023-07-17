@@ -58,7 +58,6 @@ body .container__text {
   font-size: 20px;
   margin: 40px;
   width: 75%;
-  background-color: rgb(46, 26, 26);
 }
 body .container__text span {
   text-transform: uppercase;
@@ -71,6 +70,7 @@ body .container__text__gold {
   align-items: center;
   flex-wrap: none;
   gap: 0px;
+  background-color: rgba(46, 26, 26, 0.651);
 }
 body .container__text__gold__img {
   width: 70px;
@@ -79,11 +79,27 @@ body .container__text__gold__info {
   font-size: 45px;
   font-weight: bold;
 }
+body .container__text__description {
+  background-color: rgba(46, 26, 26, 0.651);
+}
 body .container__text__description #warning {
   color: red;
   text-decoration: underline;
 }
+body .container__text__button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: none;
+  gap: 40px;
+  margin: 20px;
+}
 body .container__text__button__dig {
+  padding: 20px;
+  cursor: pointer;
+}
+body .container__text__button__reset {
   background-color: rgb(95, 43, 43);
   padding: 20px;
   border: 4px solid blue;
@@ -92,6 +108,9 @@ body .container__text__button__dig {
   font-weight: bold;
   color: green;
   cursor: pointer;
+}
+body .container__text button:active img {
+  content: url("../../multimedia/img/btn2.webp");
 }
 body .container__carrucel {
   width: 20%;
@@ -139,7 +158,7 @@ body .container__carrucel__cards .card {
   margin-bottom: 20px;
 }
 body .container__carrucel__cards .card__lvl {
-  background-color: blue;
+  background-color: rgb(168, 168, 192);
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   padding: 10px 20px;
@@ -175,6 +194,7 @@ body .container__carrucel__cards .card__info__text {
   gap: 20px;
   width: 50%;
   background-color: green;
+  padding: 5px;
 }
 body .container__carrucel__cards .card__info__text p {
   font-weight: bold;
@@ -184,7 +204,7 @@ body .container__carrucel__cards .card__info__text p {
 body .container__carrucel__cards .card__info__text span {
   font-weight: bold;
   color: #1a1a1a;
-  font-size: 20px;
+  font-size: 1rem;
 }
 body .container__carrucel__cards .card__info__text__button {
   display: flex;
@@ -193,7 +213,7 @@ body .container__carrucel__cards .card__info__text__button {
   align-items: center;
   flex-wrap: none;
   gap: 0px;
-  max-width: 100px;
+  width: 100%;
   background-color: red;
   padding: 4px 15px 4px 5px;
   border: 3px solid blue;
@@ -201,7 +221,7 @@ body .container__carrucel__cards .card__info__text__button {
   cursor: pointer;
 }
 body .container__carrucel__cards .card__info__text__button__img {
-  width: 50px;
+  width: 50%;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -40,14 +40,12 @@ class Digger {
             <img src="${this.image}" alt="">
         </div>
         <div class="card__info__text">
-            <p><span class="card__info__name">${this.name}</span></p>
-            <p>Poder: <span class="card__info__power">${this.power}</span></p>
+            <p><span class="card__info__text__name">${this.name}</span></p>
+            <p>Poder: <span class="card__info__text__power">${this.power}</span></p>
+            <span class="card__info__text__cost">${this.cost}$</span>
             <button class="card__info__text__button" id="button${this.id}">
-                <div class="card__info__text__button__img">
-                    <img src="multimedia/img/coin..webp" alt="coin">
-                </div>
                 <div class="card__info__text__button__cost">
-                    <span class="card__info__text__button__cost__info">${this.cost}</span>
+                <p>Comprar</p>
                 </div>
             </button>
         </div>
@@ -142,10 +140,8 @@ const buystoneDig = () => allPower[2].checkGold();
 const buycopperDig = () => allPower[3].checkGold();
 
 const cardLvlUi = document.querySelectorAll(".card__lvl__text");
-const cardCostUi = document.querySelectorAll(
-  ".card__info__text__button__cost__info"
-);
-const cardPowerUi = document.querySelectorAll(".card__info__power");
+const cardCostUi = document.querySelectorAll(".card__info__text__cost");
+const cardPowerUi = document.querySelectorAll(".card__info__text__power");
 
 const dig = () => {
   let totalPower = 0;
@@ -159,7 +155,7 @@ const dig = () => {
 };
 const updateDiggersVal = (digger) => {
   cardLvlUi[digger].textContent = `${allPower[digger].lvl}`;
-  cardCostUi[digger].textContent = `${allPower[digger].cost}`;
+  cardCostUi[digger].textContent = `${allPower[digger].cost}$`;
   cardPowerUi[digger].textContent = `${allPower[digger].power}`;
 };
 const updateGold = () => {

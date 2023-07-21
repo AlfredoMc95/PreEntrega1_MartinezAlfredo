@@ -29,6 +29,9 @@ body {
   padding: 40px;
   background-color: #4d2615;
 }
+body .swal2-popup {
+  font-size: 1.5rem;
+}
 body .title {
   display: flex;
   flex-direction: row;
@@ -37,7 +40,7 @@ body .title {
   flex-wrap: none;
   gap: none;
   margin-bottom: 40px;
-  background-color: rgb(128, 41, 41);
+  background-color: rgb(77, 8, 8);
 }
 body .title h1 span {
   text-transform: uppercase;

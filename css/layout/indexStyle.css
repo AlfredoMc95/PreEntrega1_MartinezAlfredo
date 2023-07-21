@@ -1,9 +1,9 @@
 /* Error: Undefined mixin.
  *   ,
- * 6 |         @include d-flex(row, center, center, none, none);
+ * 9 |         @include d-flex(row, center, center, none, none);
  *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  *   '
- *   scss\layout\indexStyle.scss 6:9  root stylesheet */
+ *   scss\layout\indexStyle.scss 9:9  root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -13,5 +13,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Undefined mixin.\a   \2577 \a 6 \2502          @include d-flex(row, center, center, none, none);\d\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   scss\\layout\\indexStyle.scss 6:9  root stylesheet";
+  content: "Error: Undefined mixin.\a   \2577 \a 9 \2502          @include d-flex(row, center, center, none, none);\d\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   scss\\layout\\indexStyle.scss 9:9  root stylesheet";
 }

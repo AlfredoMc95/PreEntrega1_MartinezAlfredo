@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AlfredoMc95/PreEntrega1_MartinezAlfredo/issues"
   },
-  "homepage": "https://github.com/AlfredoMc95/PreEntrega1_MartinezAlfredo#readme"
+  "homepage": "https://github.com/AlfredoMc95/PreEntrega1_MartinezAlfredo#readme",
+  "dependencies": {
+    "toastify-js": "^1.12.0"
+  }
 }

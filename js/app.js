@@ -57,7 +57,7 @@ class Digger {
       this.firstBuy();
       updateWarning("");
     } else {
-      updateWarning("Oro insuficiente");
+      Msngold();
     }
   }
   firstBuy() {
@@ -184,7 +184,7 @@ resetgoldBtn.addEventListener("click", reset);
 digBtn.addEventListener("click", dig);
 
 Swal.fire({
-  title: "Quarry collector",
+  title: "Bienvenido",
   text: "Presiona la pica para minar.",
   imageUrl: "multimedia/img/Tutorial.webp",
   imageWidth: 400,
@@ -199,3 +199,14 @@ Swal.fire({
   //bgColor button
   confirmButtonColor: "blue",
 });
+
+const Msngold = () => {
+  Toastify({
+    text: "Oro insuficiente",
+    duration: 3000,
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+      color: "black",
+    },
+  }).showToast();
+};

@@ -182,3 +182,20 @@ const savediggers = () => {
 
 resetgoldBtn.addEventListener("click", reset);
 digBtn.addEventListener("click", dig);
+
+Swal.fire({
+  title: "Quarry collector",
+  text: "Presiona la pica para minar.",
+  imageUrl: "multimedia/img/Tutorial.webp",
+  imageWidth: 400,
+  imageHeight: 400,
+  imageAlt: "tutorial",
+  //color text
+  color: "black",
+  //color panel
+  background: "green",
+  //bgColor outside
+  backdrop: `rgba(0,0,123,0.4)`,
+  //bgColor button
+  confirmButtonColor: "blue",
+});

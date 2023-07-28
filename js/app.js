@@ -2,25 +2,13 @@ let gold = 0;
 let textWarning = "";
 let allPower = [];
 let loadGoldData = localStorage.getItem("totalGold") || 0;
+let url = "../json/diggers.json";
+
 const carrucel = document.querySelector(".container__carrucel__cards");
 const goldUi = document.querySelector("#oro");
 const resetgoldBtn = document.querySelector("#resetGold");
 const warningUi = document.querySelector("#warning");
 const digBtn = document.querySelector("#dig");
-
-document.addEventListener("DOMContentLoaded", () => {
-  const buyPickaxeBtn = document.querySelector("#button0");
-  const buygroundDigBtn = document.querySelector("#button1");
-  const buystoneDigBtn = document.querySelector("#button2");
-  const buycopperDigBtn = document.querySelector("#button3");
-
-  buyPickaxeBtn.addEventListener("click", buyPickaxe);
-  buygroundDigBtn.addEventListener("click", buygroundDig);
-  buystoneDigBtn.addEventListener("click", buystoneDig);
-  buycopperDigBtn.addEventListener("click", buycopperDig);
-  loadGold();
-  tutorial();
-});
 
 class Digger {
   constructor(objDigger) {
@@ -31,27 +19,6 @@ class Digger {
     this.lvl = objDigger.lvl;
     this.buyed = objDigger.buyed;
     this.image = objDigger.image;
-    carrucel.innerHTML += `
-    <div class="card">
-    <div class="card__lvl">
-        <p>Lv.<span class="card__lvl__text">${this.lvl}</span></p>
-    </div>
-    <div class="card__info">
-        <div class="card__info__img">
-            <img src="${this.image}" alt="">
-        </div>
-        <div class="card__info__text">
-            <p><span class="card__info__text__name">${this.name}</span></p>
-            <p>Poder: <span class="card__info__text__power">${this.power}</span></p>
-            <span class="card__info__text__cost">${this.cost}$</span>
-            <button class="card__info__text__button" id="button${this.id}">
-                <div class="card__info__text__button__cost">
-                <p>Comprar</p>
-                </div>
-            </button>
-        </div>
-        </div>
-    </div>`;
   }
   checkGold() {
     if (gold >= this.cost) {
@@ -72,7 +39,7 @@ class Digger {
   buyUpgrade() {
     gold -= this.cost;
     this.lvl++;
-    this.power += Math.round(this.cost / 6);
+    this.power += Math.round(this.cost / 3);
     this.cost = this.lvl * this.power * 5;
     saveGold();
     updateGold();
@@ -80,69 +47,61 @@ class Digger {
     savediggers();
   }
 }
-const createDiggers = (Object) => {
-  for (const digger of Object) {
-    const newDigger = new Digger(digger);
-    allPower.push(newDigger);
-  }
-};
-const displayDiggers = () => {
-  const newDiggers = `[
-    {
-      "name": "Pico",
-      "id": 0,
-      "cost": 10,
-      "power": 1,
-      "lvl": 1,
-      "buyed": true,
-      "image": "multimedia/img/pickaxe.webp"
-    },
-    {
-      "name": "Mina de tierra",
-      "id": 1,
-      "cost": 100,
-      "power": 0,
-      "lvl": 0,
-      "buyed": false,
-      "image": "multimedia/img/clayDig.webp"
-    },
-    {
-      "name": "Mina de piedra",
-      "id": 2,
-      "cost": 1000,
-      "power": 0,
-      "lvl": 0,
-      "buyed": false,
-      "image": "multimedia/img/StoneDig.webp"
-    },
-    {
-      "name": "Mina de cobre",
-      "id": 3,
-      "cost": 10000,
-      "power": 0,
-      "lvl": 0,
-      "buyed": false,
-      "image": "multimedia/img/cooperDig.webp"
-    }
-  ]`;
-  const jsonDiggers = JSON.parse(newDiggers);
-  createDiggers(jsonDiggers);
-};
-const loadDiggers = () => {
-  const diggersSaved = JSON.parse(localStorage.getItem("digger"));
-  diggersSaved === null ? displayDiggers() : createDiggers(diggersSaved);
-};
-
-loadDiggers();
-
 const buyPickaxe = () => allPower[0].checkGold();
 const buygroundDig = () => allPower[1].checkGold();
 const buystoneDig = () => allPower[2].checkGold();
 const buycopperDig = () => allPower[3].checkGold();
 
-const cardLvlUi = document.querySelectorAll(".card__lvl__text");
-const cardCostUi = document.querySelectorAll(".card__info__text__cost");
-const cardPowerUi = document.querySelectorAll(".card__info__text__power");
+const createDiggers = (Object) => {
+  Object.forEach((element) => {
+    carrucel.innerHTML += `
+    <div class="card">
+    <div class="card__lvl">
+      <p>Lv.<span class="card__lvl__text">${element.lvl}</span></p>
+    </div>
+    <div class="card__info">
+        <div class="card__info__img">
+            <img src="${element.image}" alt="">
+        </div>
+        <div class="card__info__text">
+            <p><span class="card__info__text__name">${element.name}</span></p>
+            <p>Poder: <span class="card__info__text__power">${element.power}</span></p>
+            <span class="card__info__text__cost">${element.cost}$</span>
+            <button class="card__info__text__button" id="button${element.id}">
+                <div class="card__info__text__button__cost">
+                <p>Comprar</p>
+                </div>
+            </button>
+        </div>
+        </div>
+    </div>`;
+    const newDigger = new Digger(element);
+    allPower.push(newDigger);
+  });
+  const buyPickaxeBtn = document.querySelector("#button0");
+  const buygroundDigBtn = document.querySelector("#button1");
+  const buystoneDigBtn = document.querySelector("#button2");
+  const buycopperDigBtn = document.querySelector("#button3");
+  buyPickaxeBtn.addEventListener("click", buyPickaxe);
+  buygroundDigBtn.addEventListener("click", buygroundDig);
+  buystoneDigBtn.addEventListener("click", buystoneDig);
+  buycopperDigBtn.addEventListener("click", buycopperDig);
+};
+const getDiggers = () => {
+  fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      createDiggers(res);
+    });
+};
+const loadDiggers = () => {
+  const diggersSaved = JSON.parse(localStorage.getItem("digger"));
+  diggersSaved === null ? getDiggers() : createDiggers(diggersSaved);
+};
+
+loadDiggers();
 
 const dig = () => {
   let totalPower = 0;
@@ -155,6 +114,9 @@ const dig = () => {
   updateGold();
 };
 const updateDiggersVal = (digger) => {
+  const cardLvlUi = document.querySelectorAll(".card__lvl__text");
+  const cardCostUi = document.querySelectorAll(".card__info__text__cost");
+  const cardPowerUi = document.querySelectorAll(".card__info__text__power");
   cardLvlUi[digger].textContent = `${allPower[digger].lvl}`;
   cardCostUi[digger].textContent = `${allPower[digger].cost}$`;
   cardPowerUi[digger].textContent = `${allPower[digger].power}`;
@@ -213,3 +175,6 @@ const Msngold = () => {
     },
   }).showToast();
 };
+
+loadGold();
+tutorial();

@@ -157,7 +157,7 @@ const tutorial = () => {
     //color text
     color: "black",
     //color panel
-    background: "green",
+    background: "#73B873",
     //bgColor outside
     backdrop: `rgba(0,0,123,0.4)`,
     //bgColor button

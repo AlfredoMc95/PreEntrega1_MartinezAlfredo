@@ -128,9 +128,7 @@ const updateGold = () => {
 };
 const reset = () => {
   localStorage.clear();
-  updateWarning(
-    'porfavor recargar paguina, este boton ayuda con un "localStorage.clear()"'
-  );
+  localStorageReset();
 };
 const loadGold = () => {
   gold = Number(loadGoldData);
@@ -154,14 +152,20 @@ const tutorial = () => {
     imageWidth: 400,
     imageHeight: 400,
     imageAlt: "tutorial",
-    //color text
-    color: "black",
-    //color panel
-    background: "#73B873",
-    //bgColor outside
-    backdrop: `rgba(0,0,123,0.4)`,
-    //bgColor button
-    confirmButtonColor: "blue",
+    color: "#3b4b44;",
+    background: "#e4d1b9",
+    backdrop: `#6d533548`,
+    confirmButtonColor: "#70442f",
+  });
+};
+const localStorageReset = () => {
+  Swal.fire({
+    text: 'Porfavor recargar paguina, este boton ayuda con un "localStorage.clear()". En este proyecto tanto el oro como los valores de las minas quedan guardados.',
+    imageAlt: "tutorial",
+    color: "#3b4b44;",
+    background: "#e4d1b9",
+    backdrop: `#6d533548`,
+    confirmButtonColor: "#70442f",
   });
 };
 

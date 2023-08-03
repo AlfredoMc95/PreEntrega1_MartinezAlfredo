@@ -2,7 +2,7 @@ let gold = 0;
 let textWarning = "";
 let allPower = [];
 let loadGoldData = localStorage.getItem("totalGold") || 0;
-let url = "../json/diggers.json";
+const URL = "../json/diggers.json";
 
 const carrucel = document.querySelector(".container__carrucel__cards");
 const goldUi = document.querySelector("#oro");
@@ -88,7 +88,7 @@ const createDiggers = (Object) => {
   buycopperDigBtn.addEventListener("click", buycopperDig);
 };
 const getDiggers = () => {
-  fetch(url)
+  fetch(URL)
     .then((res) => {
       return res.json();
     })

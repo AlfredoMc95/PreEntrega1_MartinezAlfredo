@@ -1,8 +1,9 @@
+import FEETCHJSON from "./fetchJson.js";
+
 let gold = 0;
-let textWarning = "";
 let allPower = [];
 let loadGoldData = localStorage.getItem("totalGold") || 0;
-const URL = "../json/diggers.json";
+const jsonObj = new FEETCHJSON();
 
 const carrucel = document.querySelector(".container__carrucel__cards");
 const goldUi = document.querySelector("#oro");
@@ -87,22 +88,15 @@ const createDiggers = (Object) => {
   buystoneDigBtn.addEventListener("click", buystoneDig);
   buycopperDigBtn.addEventListener("click", buycopperDig);
 };
-const getDiggers = () => {
-  fetch(URL)
-    .then((res) => {
-      return res.json();
-    })
-    .then((res) => {
-      createDiggers(res);
-    });
-};
+async function getDiggers() {
+  const diggerObj = await jsonObj.getJson();
+  createDiggers(diggerObj);
+}
 const loadDiggers = () => {
   const diggersSaved = JSON.parse(localStorage.getItem("digger"));
   diggersSaved === null ? getDiggers() : createDiggers(diggersSaved);
 };
-
 loadDiggers();
-
 const dig = () => {
   let totalPower = 0;
   allPower.forEach((dig) => {
@@ -168,7 +162,6 @@ const localStorageReset = () => {
     confirmButtonColor: "#70442f",
   });
 };
-
 const Msngold = () => {
   Toastify({
     text: "Oro insuficiente",
@@ -179,6 +172,5 @@ const Msngold = () => {
     },
   }).showToast();
 };
-
 loadGold();
 tutorial();

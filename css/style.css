@@ -202,5 +202,33 @@ body .container__carrucel__cards .card__info__text__button {
 body .container__carrucel__cards .card__info__text__button__img {
   width: 50%;
 }
+body .footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: none;
+  gap: 0px;
+  padding: 40px;
+  margin: 20px 0px 0px 0px;
+  background-color: #e4d1b9;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23a29497' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+  border: 1px solid #2f5b70;
+  border-radius: 5px;
+  box-shadow: 0px 0px 35px -10px #2a1a12;
+  -webkit-box-shadow: 0px 0px 35px -10px #2a1a12;
+  -moz-box-shadow: 0px 0px 35px -10px #2a1a12;
+}
+body .footer__right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: none;
+  gap: 10px;
+}
+body .footer__right img {
+  max-width: 30px;
+}
 
 /*# sourceMappingURL=style.css.map */

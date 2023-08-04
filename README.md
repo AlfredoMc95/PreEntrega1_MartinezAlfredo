@@ -33,14 +33,12 @@ Tecnologías Utilizadas
     JavaScript para la lógica y funcionalidad del clicker.
     Librería sweetalert2 y toastify js para efectos especiales y animaciones.
 
-Contribución
-
-    la musica fue tomada de https://tallbeard.itch.io/music-loop-bundle
-    el autro es Tallbeard Studios
-    nombre de la cancion Patreon Goal Reward Loops - Track 14
-
 Créditos
 
 Este proyecto fue creado con amor y dedicación para el curso de JavaScript en CoderHouse.
 
 ¡Esperos que disfrutes jugando Quarry Collector tanto como yo disfrute creándolo!
+
+la musica fue tomada de https://tallbeard.itch.io/music-loop-bundle
+el autro es Tallbeard Studios
+nombre de la cancion Patreon Goal Reward Loops - Track 14

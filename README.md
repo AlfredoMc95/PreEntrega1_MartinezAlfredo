@@ -2,8 +2,6 @@
 
 Quarry Collector - README
 
-Quarry Collector Logo
-
 Descripción del Proyecto
 
 Quarry Collector es un emocionante videojuego clicker desarrollado como proyecto final del curso de JavaScript en CoderHouse. El objetivo principal del juego es recolectar oro minando y mejorar la producción para alcanzar niveles cada vez más altos.

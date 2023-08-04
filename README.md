@@ -14,6 +14,10 @@ Instalación
 
     Abre el archivo index.html en tu navegador preferido para empezar a jugar.
 
+o jugar mediate este link
+
+    https://proyecto-final-martinez-alfredo.vercel.app/
+
 Instrucciones del Juego
 
     Haz clic en la pica para recolectar oro.

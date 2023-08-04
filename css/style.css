@@ -27,6 +27,17 @@ button {
   border: none;
 }
 
+.buttonGeneric {
+  background-color: #e4d1b9;
+  padding: 20px;
+  border: 1px solid #2f5b70;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #3b4b44;
+  cursor: pointer;
+}
+
 body {
   background-color: #70442f;
   background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23a29497' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -55,6 +66,9 @@ body .title {
 body .title h1 span {
   text-transform: uppercase;
   color: #3b4b44;
+}
+body .music audio {
+  width: 100%;
 }
 body .container {
   display: flex;
@@ -109,16 +123,6 @@ body .container__text__button {
 }
 body .container__text__button__dig {
   padding: 20px;
-  cursor: pointer;
-}
-body .container__text__button__reset {
-  background-color: #e4d1b9;
-  padding: 20px;
-  border: 1px solid #2f5b70;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #3b4b44;
   cursor: pointer;
 }
 body .container__text button:active img {

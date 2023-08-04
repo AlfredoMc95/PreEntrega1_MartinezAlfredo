@@ -1,14 +1,14 @@
 import FEETCHJSON from "./fetchJson.js";
+import { ALERTS } from "./alerts.js";
 
 let gold = 0;
 let allPower = [];
 let loadGoldData = localStorage.getItem("totalGold") || 0;
 const jsonObj = new FEETCHJSON();
-
+const alerts = new ALERTS();
 const carrucel = document.querySelector(".container__carrucel__cards");
 const goldUi = document.querySelector("#oro");
 const resetgoldBtn = document.querySelector("#resetGold");
-const warningUi = document.querySelector("#warning");
 const digBtn = document.querySelector("#dig");
 
 class Digger {
@@ -26,7 +26,7 @@ class Digger {
       this.firstBuy();
       updateWarning("");
     } else {
-      Msngold();
+      alerts.Msngold();
     }
   }
   firstBuy() {
@@ -118,18 +118,16 @@ const updateDiggersVal = (digger) => {
 const updateGold = () => {
   goldUi.textContent = gold;
   saveGold();
-  updateWarning("");
 };
 const reset = () => {
   localStorage.clear();
-  localStorageReset();
+  alerts.localStorageReset();
 };
 const loadGold = () => {
   gold = Number(loadGoldData);
   updateGold();
 };
 const saveGold = () => (localStorage.totalGold = gold);
-const updateWarning = (mensaje) => (warningUi.textContent = mensaje);
 const savediggers = () => {
   let diggersPower = JSON.stringify(allPower);
   localStorage.setItem("digger", diggersPower);
@@ -138,39 +136,5 @@ const savediggers = () => {
 resetgoldBtn.addEventListener("click", reset);
 digBtn.addEventListener("click", dig);
 
-const tutorial = () => {
-  Swal.fire({
-    title: "Bienvenido",
-    text: "Presiona la pica para minar.",
-    imageUrl: "multimedia/img/Tutorial.webp",
-    imageWidth: 400,
-    imageHeight: 400,
-    imageAlt: "tutorial",
-    color: "#3b4b44;",
-    background: "#e4d1b9",
-    backdrop: `#6d533548`,
-    confirmButtonColor: "#70442f",
-  });
-};
-const localStorageReset = () => {
-  Swal.fire({
-    text: 'Porfavor recargar paguina, este boton ayuda con un "localStorage.clear()". En este proyecto tanto el oro como los valores de las minas quedan guardados.',
-    imageAlt: "tutorial",
-    color: "#3b4b44;",
-    background: "#e4d1b9",
-    backdrop: `#6d533548`,
-    confirmButtonColor: "#70442f",
-  });
-};
-const Msngold = () => {
-  Toastify({
-    text: "Oro insuficiente",
-    duration: 3000,
-    style: {
-      background: "linear-gradient(to right, #00b09b, #96c93d)",
-      color: "black",
-    },
-  }).showToast();
-};
 loadGold();
-tutorial();
+alerts.tutorial();

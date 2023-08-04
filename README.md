@@ -17,7 +17,8 @@ Instalación
 Instrucciones del Juego
 
     Haz clic en la pica para recolectar oro.
-    Con el oro obtenido, podrás mejorar la producción de la cantera y desbloquear nuevas herramientas y mejoras.
+    Con el oro obtenido, podrás mejorar la producción de la cantera
+    y desbloquear nuevas herramientas y mejoras.
     Intenta alcanzar la mayor cantidad de oro y superar tus propios récords.
 
 Características Principales
@@ -28,7 +29,7 @@ Características Principales
 
 Tecnologías Utilizadas
 
-    HTML5, CSS, sass para la estructura y diseño del juego.
+    HTML5, CSS, SASS para la estructura y diseño del juego.
     JavaScript para la lógica y funcionalidad del clicker.
     Librería sweetalert2 y toastify js para efectos especiales y animaciones.
 

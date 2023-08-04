@@ -25,7 +25,11 @@ body {
       }
     }
   }
-
+  .music{
+    audio{
+      width: 100%
+    }
+  }
   .container {
     @include d-flex(row, center, space-between, none, 20px);
     background-image: url(../../multimedia/img/bgpg.webp);
@@ -70,17 +74,6 @@ body {
 
         &__dig {
           padding: 20px;
-          cursor: pointer;
-        }
-
-        &__reset {
-          background-color: $bg-color2;
-          padding: 20px;
-          border: 1px solid $border-triada;
-          border-radius: 10px;
-          font-size: 20px;
-          font-weight: bold;
-          color: $color-text;
           cursor: pointer;
         }
       }

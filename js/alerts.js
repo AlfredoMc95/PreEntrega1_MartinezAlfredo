@@ -1,3 +1,6 @@
+import { MUSIC } from "./bgMusic.js";
+const music = new MUSIC();
+
 export class ALERTS {
   tutorial() {
     Swal.fire({
@@ -11,6 +14,8 @@ export class ALERTS {
       background: "#e4d1b9",
       backdrop: `#6d533548`,
       confirmButtonColor: "#70442f",
+    }).then(() => {
+      music.getMusic();
     });
   }
   localStorageReset() {

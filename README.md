@@ -35,6 +35,10 @@ Tecnologías Utilizadas
 
 Contribución
 
+    la musica fue tomada de https://tallbeard.itch.io/music-loop-bundle
+    el autro es Tallbeard Studios
+    nombre de la cancion Patreon Goal Reward Loops - Track 14
+
 Créditos
 
 Este proyecto fue creado con amor y dedicación para el curso de JavaScript en CoderHouse.

@@ -1,11 +1,13 @@
 import FEETCHJSON from "./fetchJson.js";
 import { ALERTS } from "./alerts.js";
+import { MUSIC } from "./bgMusic.js";
 
 let gold = 0;
 let allPower = [];
 let loadGoldData = localStorage.getItem("totalGold") || 0;
 const jsonObj = new FEETCHJSON();
 const alerts = new ALERTS();
+const pickaxeSound = new MUSIC();
 const carrucel = document.querySelector(".container__carrucel__cards");
 const goldUi = document.querySelector("#oro");
 const resetgoldBtn = document.querySelector("#resetGold");
@@ -106,6 +108,7 @@ const dig = () => {
   });
   gold += totalPower;
   updateGold();
+  pickaxeSound.getpickAxeSound();
 };
 const updateDiggersVal = (digger) => {
   const cardLvlUi = document.querySelectorAll(".card__lvl__text");

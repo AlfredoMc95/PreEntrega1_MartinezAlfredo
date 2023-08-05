@@ -1,5 +1,6 @@
-import { URLMUSIC } from "./url.js";
+import { URLMUSIC, URLPICKAXE } from "./url.js";
 const musicId = document.querySelector("#musicBg");
+const pickaxeSOundId = document.querySelector("#pickaxeSound");
 
 export class MUSIC {
   getMusic() {
@@ -8,5 +9,11 @@ export class MUSIC {
     musicId.src = music;
     musicId.play();
     musicId.volume = 0.4;
+  }
+  getpickAxeSound() {
+    const pickaxeSound = URLPICKAXE;
+    pickaxeSOundId.src = pickaxeSound;
+    pickaxeSOundId.volume = 0.4;
+    pickaxeSOundId.play();
   }
 }

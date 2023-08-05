@@ -46,3 +46,5 @@ Este proyecto fue creado con amor y dedicación para el curso de JavaScript en C
 la musica fue tomada de https://tallbeard.itch.io/music-loop-bundle
 el autro es Tallbeard Studios
 nombre de la cancion Patreon Goal Reward Loops - Track 14
+
+audio pica captain yulef https://freesound.org/people/CaptainYulef/sounds/638696/ de freesound

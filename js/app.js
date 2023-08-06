@@ -1,6 +1,6 @@
 import FEETCHJSON from "./fetchJson.js";
 import { ALERTS } from "./alerts.js";
-import { MUSIC } from "./bgMusic.js";
+import { MUSIC, musicVol } from "./bgMusic.js";
 
 let gold = 0;
 let allPower = [];
@@ -141,3 +141,7 @@ digBtn.addEventListener("click", dig);
 
 loadGold();
 alerts.tutorial();
+
+musicVol.addEventListener("input", () => {
+  pickaxeSound.soundChangeVal();
+});
